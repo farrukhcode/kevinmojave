@@ -67,7 +67,7 @@
   const ico = (n, cls) => '<svg class="i' + (cls ? " " + cls : "") + '" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (I[n] || "") + "</svg>";
   const MARK = cls => '<img class="' + (cls || "mark") + '" src="' + EMBLEM + '" alt="" aria-hidden="true" width="191" height="252">';
   const SUN = '<img class="sun spin" src="' + VIRUS_MARK + '" alt="" aria-hidden="true">';
-  const VIRUS_O = spin => '<span class="virus-o"><img class="' + (spin ? "spin" : "") + '" src="' + VIRUS_MARK + '" alt="" aria-hidden="true" width="87" height="87"></span>';
+  const VIRUS_O = spin => '<span class="virus-o"><img class="' + (spin ? "spin" : "") + '" src="' + VIRUS_MARK + '" alt="" aria-hidden="true" width="100" height="100"></span>';
   const LOCKUP = () =>
     '<span class="emblem"><img src="' + EMBLEM + '" alt="" aria-hidden="true" width="191" height="252"></span>' +
     '<span class="lock-text"><span class="lock-word"><span>M</span>' + VIRUS_O(false) + '<span>jave Medical</span></span>' +
@@ -133,7 +133,7 @@
       '<div class="hero-ctas"><a class="btn btn-amber btn-lg" href="#/book">' + ico("cal") + esc(t(C.ui.book)) + '</a><a class="btn btn-ghost btn-lg" href="' + PHONE_TEL + '">' + ico("phone") + esc(t(C.ui.callUs)) + "</a></div>" +
       '<div class="chips">' + H.chips.map(c => '<span class="chip">' + ico("check") + esc(t(c)) + "</span>").join("") + "</div>" +
       "</div>" +
-      '<div class="portrait"><div class="sand"></div><div class="ring"></div><img src="' + HEADSHOT + '" alt="Portrait of Dr. Kevin Ganesh" width="643" height="900">' +
+      '<div class="portrait"><div class="portrait-frame"><div class="sand"></div><div class="ring"></div><img src="' + HEADSHOT + '" alt="Portrait of Dr. Kevin Ganesh" width="643" height="900"></div>' +
       '<div class="tag">' + MARK() + "<div><b>" + esc(H.tagName) + "</b><span>" + esc(t(H.tagRole)) + "</span></div></div></div>" +
       "</div></section>" +
 
@@ -461,11 +461,9 @@
   function renderChrome() {
     const cur = currentPage();
     document.documentElement.lang = lang;
-    $("#nav").innerHTML = C.nav.map(n => '<a href="#/' + (n.id === "home" ? "" : n.id) + '"' + (cur === n.id ? ' aria-current="page"' : "") + ">" + esc(t(n)) + "</a>").join("") +
-      '<div class="nav-extras"><span class="theme-switch" role="group" aria-label="' + esc(t(C.ui.themeLabel)) + '"></span></div>';
+    $("#nav").innerHTML = C.nav.map(n => '<a href="#/' + (n.id === "home" ? "" : n.id) + '"' + (cur === n.id ? ' aria-current="page"' : "") + ">" + esc(t(n)) + "</a>").join("");
     $("#brand-shield").innerHTML = '<img src="' + EMBLEM + '" alt="" aria-hidden="true" width="191" height="252">';
-    $("#brand-virus").innerHTML = '<img class="spin" src="' + VIRUS_MARK + '" alt="" aria-hidden="true" width="87" height="87">';
-    $("#head-call").innerHTML = ico("phone") + PHONE;
+    $("#brand-virus").innerHTML = '<img class="spin" src="' + VIRUS_MARK + '" alt="" aria-hidden="true" width="100" height="100">';
     $("#head-book").textContent = t(C.ui.book);
     $("#menu-btn").innerHTML = ico($("#site-head").classList.contains("open") ? "x" : "menu");
     $("#menu-btn").setAttribute("aria-label", t(C.ui.menu));
@@ -474,14 +472,14 @@
     const themes = [["auto", "auto"], ["light", "sun"], ["dark", "moon"]];
     const switchHtml = themes.map(([id, ic]) =>
       '<button type="button" data-theme-set="' + id + '" aria-pressed="' + (theme === id) + '" title="' + esc(t(C.ui.themes[id])) + '" aria-label="' + esc(t(C.ui.themes[id])) + '">' + ico(ic) + "</button>").join("");
-    document.querySelectorAll(".theme-switch").forEach(el => { el.innerHTML = switchHtml; });
     $("#mobile-bar").innerHTML = '<a class="btn btn-ghost" href="' + PHONE_TEL + '">' + ico("phone") + esc(t(C.ui.call)) + '</a><a class="btn btn-amber" href="#/book">' + ico("cal") + esc(t(C.ui.book)) + "</a>";
     const F = C.footer;
     $("#site-foot").innerHTML = '<div class="wrap foot-grid"><div><a class="foot-lockup" href="#/" aria-label="Mojave Medical home">' + LOCKUP() + '</a><p class="small" style="max-width:34ch">' + esc(t(F.tag)) + '</p><address class="addr small" style="margin-top:1rem">' + esc(ADDRESS.line1) + "<br>" + esc(ADDRESS.city) + "</address></div>" +
       "<div><h4>" + esc(t(F.pages)) + "</h4><ul>" + [{ id: "home", en: "Home", es: "Inicio" }].concat(C.nav).map(n => '<li><a href="#/' + (n.id === "home" ? "" : n.id) + '">' + esc(t(n)) + "</a></li>").join("") + "</ul></div>" +
       "<div><h4>" + esc(t(F.patientsCol)) + "</h4><ul>" + F.links.map(l => '<li><a href="' + l.href + '">' + esc(t(l)) + "</a></li>").join("") + '<li><a href="#/forms">' + esc(t(F.formsLink)) + "</a></li>" + "</ul></div>" +
       "<div><h4>" + esc(t(F.contactCol)) + '</h4><ul><li><a class="mono" href="' + PHONE_TEL + '">' + PHONE + '</a></li><li class="mono small">' + esc(t(C.contact.fax)) + " " + FAX + '</li><li><a href="mailto:' + EMAIL + '" style="word-break:break-all">' + EMAIL + '</a></li><li class="small">' + esc(t(C.ui.days)[1]) + "–" + esc(t(C.ui.days)[5]) + " " + esc(hoursRow(1)) + "<br>" + esc(t(C.ui.days)[6]) + " " + esc(hoursRow(6)) + "</li></ul></div></div>" +
-      '<div class="wrap foot-bottom"><span>' + esc(t(F.legal)) + '</span><span style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="#/privacy">' + esc(t(F.privacy)) + '</a><a href="#/accessibility">' + esc(t(F.access)) + '</a><a href="#/forms">' + esc(t(F.formsLink)) + '</a><a href="' + ADDRESS.maps + '" target="_blank" rel="noopener">' + esc(t(F.google)) + "</a></span></div>";
+      '<div class="wrap foot-bottom"><span>' + esc(t(F.legal)) + '</span><span class="foot-links"><a href="#/privacy">' + esc(t(F.privacy)) + '</a><a href="#/accessibility">' + esc(t(F.access)) + '</a><a href="#/forms">' + esc(t(F.formsLink)) + '</a><a href="' + ADDRESS.maps + '" target="_blank" rel="noopener">' + esc(t(F.google)) + "</a></span>" +
+      '<span class="foot-theme"><span class="foot-theme-label" id="foot-theme-label">' + esc(t(C.ui.themeLabel)) + '</span><span class="theme-switch" role="group" aria-labelledby="foot-theme-label">' + switchHtml + "</span></span></div>";
   }
   const PAGES = { home: pageHome, about: pageAbout, services: pageServices, patients: pagePatients, reviews: pageReviews, contact: pageContact, book: pageBook, privacy: pagePrivacy, accessibility: pageAccessibility, forms: () => pageForms(ROUTE_ARG) };
   let ROUTE_ARG = null;

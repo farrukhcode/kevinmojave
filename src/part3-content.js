@@ -57,7 +57,7 @@ const C = {
     viaYelp: { en: "via Yelp", es: "vía Yelp (original en inglés)" },
     readReviews: { en: "Read patient reviews", es: "Leer opiniones" },
     skip: { en: "Skip to content", es: "Ir al contenido" },
-    themeLabel: { en: "Colour theme", es: "Tema de color" },
+    themeLabel: { en: "Appearance", es: "Apariencia" },
     themes: {
       auto: { en: "Match my device", es: "Seguir mi dispositivo" },
       light: { en: "Light", es: "Claro" },

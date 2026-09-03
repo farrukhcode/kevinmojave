@@ -108,7 +108,7 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
 /* ============ Header ============ */
 .site-head{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--ground) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .head-row{display:flex;align-items:center;gap:1rem;min-height:74px;min-width:0}
-.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex:0 1 auto;min-width:0}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex:none}
 .brand-shield{width:48px;height:63px;flex:none;display:block}
 .brand-shield img{width:100%;height:100%;object-fit:contain;display:block}
 .brand-text{display:flex;flex-direction:column;line-height:1.05}
@@ -117,16 +117,12 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
 .wordmark .virus-o{display:inline-block;width:1.42em;height:1.42em;margin:0 .17em 0 .13em;position:relative;top:.01em;flex:none}
 .wordmark .virus-o img{width:100%;height:100%;object-fit:contain;display:block}
 .brand-sub{font-family:var(--logo-font);font-weight:500;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin-top:.34rem;white-space:nowrap}
-.nav{display:flex;gap:.1rem;margin-inline:auto;min-width:0}
-.nav-extras{display:none}
+.nav{display:flex;gap:.1rem;margin-inline:auto;flex:none}
 .nav a{padding:.55rem .8rem;border-radius:8px;text-decoration:none;font-weight:500;font-size:.96rem;color:var(--ink-2);position:relative;white-space:nowrap}
 .nav a:hover{color:var(--ink);background:var(--sand)}
 .nav a[aria-current="page"]{color:var(--ink)}
 .nav a[aria-current="page"]::after{content:"";position:absolute;left:.8rem;right:.8rem;bottom:.2rem;height:2px;background:var(--amber);border-radius:2px}
 .head-actions{display:flex;align-items:center;gap:.55rem;flex:none;margin-left:auto}
-.call-link{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.9rem;text-decoration:none;color:var(--ink);padding:.5rem .7rem;border-radius:8px}
-.call-link:hover{background:var(--sand)}
-.call-link svg{width:1em;height:1em;color:var(--amber-deep)}
 .theme-switch{display:inline-flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;flex:none}
 .theme-switch button{background:transparent;border:0;padding:.42rem .48rem;color:var(--mute);cursor:pointer;display:grid;place-items:center;line-height:0;transition:background .15s,color .15s}
 .theme-switch button:hover{color:var(--ink);background:var(--sand)}
@@ -138,20 +134,18 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--on-ink)}
 .menu-btn{display:none;background:transparent;border:1px solid var(--line-2);border-radius:8px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
 .menu-btn svg{width:22px;height:22px}
-@media (max-width:1400px){.head-actions .call-link{display:none}}
-@media (max-width:600px){.head-actions .theme-switch{display:none}}
-@media (max-width:1080px){
+/* brand (285px) + nav (495px) + actions (238px) + gaps need ~1050px of content; collapse the nav before that */
+@media (max-width:1180px){
   .nav{display:none}
   .menu-btn{display:inline-flex}
   .site-head.open .nav{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--surface);border-bottom:1px solid var(--line);padding:.75rem clamp(1rem,4vw,2.5rem) 1rem;box-shadow:var(--shadow-lg)}
-  .site-head.open .nav-extras{display:none}
-.nav a{padding:.8rem .6rem;font-size:1.05rem;border-bottom:1px solid var(--line)}
+  .nav a{padding:.8rem .6rem;font-size:1.05rem;border-bottom:1px solid var(--line)}
   .site-head.open .nav a[aria-current="page"]::after{display:none}
-  .site-head.open .nav .nav-extras{display:flex;gap:.6rem;align-items:center;padding:.9rem .6rem 0}
-  .site-head.open .nav .nav-extras .theme-switch{display:inline-flex}
-  .head-actions .call-link,.head-actions .btn{display:none}
 }
-@media (max-width:480px){.brand-sub{display:none}.wordmark{font-size:.92rem;letter-spacing:.16em}.brand-shield{width:36px;height:47px}}
+@media (max-width:800px){.head-actions .btn{display:none}} /* the fixed mobile bar carries Book + Call */
+@media (max-width:560px){.brand-sub{display:none}.wordmark{font-size:.92rem;letter-spacing:.16em}.brand-shield{width:36px;height:47px}}
+@media (max-width:430px){.wordmark{font-size:.76rem;letter-spacing:.08em}.brand-shield{width:32px;height:42px}.brand{gap:.5rem}.lang button{padding:.42rem .45rem}}
+@media (max-width:340px){.brand-text{display:none}} /* shield only on the very smallest phones */
 
 /* ============ Hero ============ */
 .hero{padding-block:clamp(2.2rem,6vw,4.5rem) clamp(2.5rem,6vw,4rem);position:relative;overflow:hidden}
@@ -162,19 +156,21 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem}
 .chip{display:inline-flex;align-items:center;gap:.45rem;padding:.42rem .75rem;border:1px solid var(--line-2);border-radius:999px;font-size:.86rem;background:var(--surface);color:var(--ink-2)}
 .chip svg{width:14px;height:14px;color:var(--sage);flex:none}
-.portrait{position:relative;aspect-ratio:4/5;max-width:440px;margin-inline:auto;width:100%}
-.portrait .sand{position:absolute;inset:8% -6% -4% 6%;background:var(--sand);border-radius:var(--r-lg);z-index:0}
+.portrait{position:relative;max-width:440px;margin-inline:auto;width:100%}
+.portrait-frame{position:relative;aspect-ratio:4/5}
+.portrait .sand{position:absolute;inset:8% -6% -6% 6%;background:var(--sand);border-radius:var(--r-lg);z-index:0}
 .portrait .ring{position:absolute;width:38%;aspect-ratio:1;border:2px solid var(--amber);border-radius:50%;right:-9%;top:-3%;z-index:0;opacity:.9}
 .portrait .ring::after{content:"";position:absolute;inset:14%;border-radius:50%;background:var(--amber);opacity:.16}
-.portrait>img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:220px 220px var(--r-lg) var(--r-lg);box-shadow:var(--shadow-lg);filter:saturate(.96)}
-.portrait .tag{position:absolute;z-index:2;left:-4%;bottom:9%;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.7rem 1rem .7rem .8rem;box-shadow:var(--shadow);display:flex;gap:.85rem;align-items:center;max-width:82%}
+.portrait-frame>img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:220px 220px var(--r-lg) var(--r-lg);box-shadow:var(--shadow-lg);filter:saturate(.96)}
+/* name card sits across the bottom edge of the frame, never over the face */
+.portrait .tag{position:relative;z-index:2;margin:-3.4rem 0 0 -4%;width:max-content;max-width:88%;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.7rem 1rem .7rem .8rem;box-shadow:var(--shadow);display:flex;gap:.85rem;align-items:center}
 .portrait .tag .mark{width:58px;height:77px;flex:none;object-fit:contain;object-position:center;display:block;border-radius:0;box-shadow:none;filter:none}
 .portrait .tag b{display:block;font-size:.92rem;font-weight:600;line-height:1.2}
 .portrait .tag span{font-size:.78rem;color:var(--mute);font-family:var(--mono);letter-spacing:.02em}
 @media (max-width:860px){
   .hero-grid{grid-template-columns:1fr}
   .portrait{max-width:340px;order:-1}
-  .portrait .tag{left:0}
+  .portrait .tag{margin-left:0;max-width:100%}
 }
 
 /* ============ Affiliation strip ============ */
@@ -437,7 +433,11 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
 .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem}
 .foot-grid a{text-decoration:none;color:var(--ink-2)}
 .foot-grid a:hover{color:var(--ink);text-decoration:underline}
-.foot-bottom{border-top:1px solid var(--line);padding-block:1.2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.84rem;color:var(--mute)}
+.foot-bottom{border-top:1px solid var(--line);padding-block:1.1rem;display:flex;align-items:center;gap:.9rem 1.6rem;flex-wrap:wrap;font-size:.84rem;color:var(--mute)}
+.foot-links{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;margin-left:auto}
+.foot-theme{display:inline-flex;align-items:center;gap:.6rem}
+.foot-theme-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+@media (max-width:600px){.foot-links{margin-left:0}}
 @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
 

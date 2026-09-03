@@ -10,12 +10,12 @@ mkdir -p dist server/public
 B64=$(base64 -i assets/dr-ganesh-headshot.jpg | tr -d '\n')
 CLINIC64=$(base64 -i assets/clinic-exterior.jpg | tr -d '\n')
 EMBLEM64=$(base64 -i brand/mojave-medical-emblem.png | tr -d '\n')
-VIRUS64=$(base64 -i brand/mojave-medical-virus-mark.png | tr -d '\n')
+VIRUS64=$(base64 -i brand/mojave-medical-virus-mark.svg | tr -d '\n')
 
 emit_body() {
   cat src/part2-skeleton.html
   cat src/part3-content.js
-  printf '<script>const HEADSHOT="data:image/jpeg;base64,%s";const CLINIC="data:image/jpeg;base64,%s";const EMBLEM="data:image/png;base64,%s";const VIRUS_MARK="data:image/png;base64,%s";</script>\n' "$B64" "$CLINIC64" "$EMBLEM64" "$VIRUS64"
+  printf '<script>const HEADSHOT="data:image/jpeg;base64,%s";const CLINIC="data:image/jpeg;base64,%s";const EMBLEM="data:image/png;base64,%s";const VIRUS_MARK="data:image/svg+xml;base64,%s";</script>\n' "$B64" "$CLINIC64" "$EMBLEM64" "$VIRUS64"
   cat src/part4-app.js
 }
 
