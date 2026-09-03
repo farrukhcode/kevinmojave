@@ -77,7 +77,7 @@ const C = {
       { en: "Accepting new patients", es: "Aceptamos pacientes nuevos" },
       { en: "Video visits available", es: "Consultas por video" }
     ],
-    tagName: "Kevin N. Ganesh, MD",
+    tagName: "Kevin Ganesh, MD",
     tagRole: { en: "Infectious Disease · Internal Medicine", es: "Infectología · Medicina interna" }
   },
 
@@ -183,12 +183,12 @@ const C = {
     lede: { en: "Board-certified in infectious disease and internal medicine. Trained in Virginia and Los Angeles. Practicing in Apple Valley.", es: "Certificado en infectología y medicina interna. Formado en Virginia y Los Ángeles. Con consulta en Apple Valley." },
     bio: {
       en: [
-        "Kevin N. Ganesh, MD, is a physician double board-certified by the American Board of Internal Medicine in Infectious Disease and in Internal Medicine. He founded Mojave Medical in Apple Valley to bring subspecialty infection care to the High Desert, where patients have long had to travel down the Cajon Pass to find it.",
+        "Kevin Ganesh, MD, is a physician double board-certified by the American Board of Internal Medicine in Infectious Disease and in Internal Medicine. He founded Mojave Medical in Apple Valley to bring subspecialty infection care to the High Desert, where patients have long had to travel down the Cajon Pass to find it.",
         "He earned his medical degree at Eastern Virginia Medical School in Norfolk (2017), completed his internal medicine residency at VCU Health in Richmond (2020), and trained as an infectious disease fellow at the Keck School of Medicine of USC and Los Angeles General Medical Center (2022), one of the largest public hospitals in the country. During fellowship he co-authored research on portable nanopore sequencing for HIV drug-resistance testing, published in the Journal of Clinical Virology in 2024.",
         "Since 2022 Dr. Ganesh has held privileges at Providence St. Mary Medical Center in Apple Valley and at Desert Valley Hospital and Victor Valley Global Medical Center in Victorville, where he consults on hospitalized patients with serious infections and then follows them in clinic after discharge. In the office he pairs that specialist lens with everyday internal medicine, so patients can keep one doctor for both."
       ],
       es: [
-        "El Dr. Kevin N. Ganesh es médico con doble certificación del American Board of Internal Medicine en Enfermedades Infecciosas y en Medicina Interna. Fundó Mojave Medical en Apple Valley para traer al High Desert la atención subespecializada en infecciones que durante años obligó a los pacientes a bajar por el Cajon Pass para encontrarla.",
+        "El Dr. Kevin Ganesh es médico con doble certificación del American Board of Internal Medicine en Enfermedades Infecciosas y en Medicina Interna. Fundó Mojave Medical en Apple Valley para traer al High Desert la atención subespecializada en infecciones que durante años obligó a los pacientes a bajar por el Cajon Pass para encontrarla.",
         "Obtuvo su título de médico en Eastern Virginia Medical School en Norfolk (2017), completó su residencia de medicina interna en VCU Health en Richmond (2020) y se formó como fellow de enfermedades infecciosas en la Keck School of Medicine de USC y el Los Angeles General Medical Center (2022), uno de los hospitales públicos más grandes del país. Durante el fellowship fue coautor de una investigación sobre secuenciación portátil por nanoporos para pruebas de resistencia a medicamentos del VIH, publicada en el Journal of Clinical Virology en 2024.",
         "Desde 2022 el Dr. Ganesh tiene privilegios en Providence St. Mary Medical Center en Apple Valley y en Desert Valley Hospital y Victor Valley Global Medical Center en Victorville, donde atiende en interconsulta a pacientes hospitalizados con infecciones graves y luego les da seguimiento en la clínica tras el alta. En el consultorio combina esa mirada de especialista con la medicina interna cotidiana, para que los pacientes puedan tener un solo médico para ambas cosas."
       ]
@@ -346,7 +346,7 @@ const C = {
   },
 
   footer: {
-    tag: { en: "The independent infectious disease and internal medicine practice of Kevin N. Ganesh, MD, in Apple Valley, California.", es: "La consulta independiente de enfermedades infecciosas y medicina interna del Dr. Kevin N. Ganesh en Apple Valley, California." },
+    tag: { en: "The independent infectious disease and internal medicine practice of Kevin Ganesh, MD, in Apple Valley, California.", es: "La consulta independiente de enfermedades infecciosas y medicina interna del Dr. Kevin Ganesh en Apple Valley, California." },
     pages: { en: "Pages", es: "Páginas" }, patientsCol: { en: "Patients", es: "Pacientes" }, contactCol: { en: "Contact", es: "Contacto" },
     links: [
       { href: "#/book", en: "Book an appointment", es: "Reservar cita" },
@@ -354,7 +354,7 @@ const C = {
       { href: "#/services", en: "Video visits", es: "Consultas por video" },
       { href: "#/contact", en: "Referring physicians", es: "Médicos que refieren" }
     ],
-    legal: { en: "© 2026 Mojave Medical · Kevin N. Ganesh, MD · Apple Valley, California", es: "© 2026 Mojave Medical · Kevin N. Ganesh, MD · Apple Valley, California" },
+    legal: { en: "© 2026 Mojave Medical · Kevin Ganesh, MD · Apple Valley, California", es: "© 2026 Mojave Medical · Kevin Ganesh, MD · Apple Valley, California" },
     privacy: { en: "Privacy", es: "Privacidad" }, access: { en: "Accessibility", es: "Accesibilidad" }, formsLink: { en: "Patient forms", es: "Formularios" },
     google: { en: "Find us on Google", es: "Encuéntrenos en Google" }
   },

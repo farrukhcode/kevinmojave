@@ -1,6 +1,6 @@
 # Mojave Medical — website + appointment system
 
-For Kevin N. Ganesh, MD · Infectious Disease and Internal Medicine · Apple Valley, CA
+For Kevin Ganesh, MD · Infectious Disease and Internal Medicine · Apple Valley, CA
 
 ## Run it
 

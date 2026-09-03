@@ -254,7 +254,7 @@
         F.items.map(f => '<a class="form-card" href="#/forms/' + f.id + '">' + '<div class="ico" style="width:36px;height:36px;border-radius:9px;background:var(--amber-soft);color:var(--amber-deep);display:grid;place-items:center">' + ico("file") + "</div><h3>" + esc(t(f.title)) + "</h3><p>" + esc(t(f.desc)) + '</p><span class="more">' + esc(t(F.print)) + ico("arrow") + "</span></a>").join("") +
         '</div><div class="note amber" style="margin-top:1.25rem">' + ico("info") + "<span>" + esc(t(C.patients.formsNote)) + "</span></div></div></section>";
     }
-    const head = '<div class="sheet-head"><div class="lock"><span class="foot-lockup">' + LOCKUP() + "</span></div><address>Kevin N. Ganesh, MD · Infectious Disease &amp; Internal Medicine<br>" + esc(ADDRESS.line1) + ", " + esc(ADDRESS.city) + "<br>" + esc(t(C.contact.phone)) + " " + PHONE + " · " + esc(t(C.contact.fax)) + " " + FAX + "</address></div>";
+    const head = '<div class="sheet-head"><div class="lock"><span class="foot-lockup">' + LOCKUP() + "</span></div><address>Kevin Ganesh, MD · Infectious Disease &amp; Internal Medicine<br>" + esc(ADDRESS.line1) + ", " + esc(ADDRESS.city) + "<br>" + esc(t(C.contact.phone)) + " " + PHONE + " · " + esc(t(C.contact.fax)) + " " + FAX + "</address></div>";
     let body = "";
     if (form.sections) body += form.sections.map(sec => {
       let inner = "";

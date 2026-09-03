@@ -81,13 +81,13 @@ export function makeMailer(env, log) {
          "Nuestro consultorio le llamará o enviará un mensaje de texto en un día hábil para confirmar la hora.",
          "", "Esto no es una confirmación de cita.",
          "Si esto es una emergencia, llame al 911.", "",
-         "Mojave Medical · Kevin N. Ganesh, MD", "16041 Kamana Rd, Apple Valley, CA 92307", "(760) 688-0084"]
+         "Mojave Medical · Kevin Ganesh, MD", "16041 Kamana Rd, Apple Valley, CA 92307", "(760) 688-0084"]
       : [`Thank you, ${a.first_name}.`, "",
          `We received your appointment request. Your reference number is ${a.ref}.`,
          "Our office will call or text you within one business day to confirm a time.",
          "", "This is not an appointment confirmation.",
          "If this is an emergency, call 911.", "",
-         "Mojave Medical · Kevin N. Ganesh, MD", "16041 Kamana Rd, Apple Valley, CA 92307", "(760) 688-0084"];
+         "Mojave Medical · Kevin Ganesh, MD", "16041 Kamana Rd, Apple Valley, CA 92307", "(760) 688-0084"];
     await transport.sendMail({
       from, to: a.email, subject, text: body.join("\n"),
       headers: { "Auto-Submitted": "auto-generated" },

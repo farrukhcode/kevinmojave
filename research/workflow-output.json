@@ -467,7 +467,7 @@
               "confidence": "high"
             },
             {
-              "claim": "Vitals profile is titled 'Kevin N. Ganesh | Richmond, VA | Infectious Disease Specialist' (legacy VCU residency address as primary); header: 'Infectious Disease — 0 [reviews] — (804) 828-0584 — 9 Years of Experience — 1200 E Broad St Richmond VA 23298 (3 other locations) — Desert Valley Hospital'. Ratings section: '0 reviews — Be first to leave a review'.",
+              "claim": "Vitals profile is titled 'Kevin Ganesh | Richmond, VA | Infectious Disease Specialist' (legacy VCU residency address as primary); header: 'Infectious Disease — 0 [reviews] — (804) 828-0584 — 9 Years of Experience — 1200 E Broad St Richmond VA 23298 (3 other locations) — Desert Valley Hospital'. Ratings section: '0 reviews — Be first to leave a review'.",
               "source_url": "https://www.vitals.com/doctors/Kevin_Naresh_Ganesh.html",
               "confidence": "high"
             },
@@ -552,7 +552,7 @@
               "confidence": "high"
             },
             {
-              "claim": "Providence.org profile: 'Kevin N. Ganesh, MD — Infectious Diseases — Accepting New Patients — Speaks: English'; Insurances Accepted: CareMore Medicare Advantage; Health Net - Medicare Advantage; Health Net HMO; Blue Shield of CA Medicare Advantage; United Healthcare HMO; Blue Shield of CA HMO; Aetna HMO; Cigna HMO; Anthem Blue Cross HMO. Board Certifications: ABIM Infectious Disease; ABIM Internal Medicine. 'Conditions and Procedures' is a ~400-item generic primary-care/urgent-care template list (Abdominal Cramps ... Wrist Sprain; includes e.g. Cellulitis, Chlamydia, Travel Medicine, Tuberculosis (Tb) Test, Vaccinations, Sexually Transmitted Disease (Std), Tick Borne Infections, Lyme Disease, HPV/Hepatitis A/B/Shingles/Flu vaccinations).",
+              "claim": "Providence.org profile: 'Kevin Ganesh, MD — Infectious Diseases — Accepting New Patients — Speaks: English'; Insurances Accepted: CareMore Medicare Advantage; Health Net - Medicare Advantage; Health Net HMO; Blue Shield of CA Medicare Advantage; United Healthcare HMO; Blue Shield of CA HMO; Aetna HMO; Cigna HMO; Anthem Blue Cross HMO. Board Certifications: ABIM Infectious Disease; ABIM Internal Medicine. 'Conditions and Procedures' is a ~400-item generic primary-care/urgent-care template list (Abdominal Cramps ... Wrist Sprain; includes e.g. Cellulitis, Chlamydia, Travel Medicine, Tuberculosis (Tb) Test, Vaccinations, Sexually Transmitted Disease (Std), Tick Borne Infections, Lyme Disease, HPV/Hepatitis A/B/Shingles/Flu vaccinations).",
               "source_url": "https://www.providence.org/doctors/infectious-diseases/ca/apple-valley/kevin-ganesh-1225563026",
               "confidence": "high"
             },
@@ -783,17 +783,17 @@
           "bio_text_verbatim": "Dr. Ganesh specializes in Infectious Disease and is known for his dedication to patient well-being and high-quality care.",
           "facts": [
             {
-              "claim": "Providence profile title/name: \"Kevin N. Ganesh, MD | Apple Valley, CA\"; specialty listed as \"Infectious Diseases\"; page shows \"Accepting New Patients\".",
+              "claim": "Providence profile title/name: \"Kevin Ganesh, MD | Apple Valley, CA\"; specialty listed as \"Infectious Diseases\"; page shows \"Accepting New Patients\".",
               "source_url": "https://www.providence.org/doctors/infectious-diseases/ca/apple-valley/kevin-ganesh-1225563026",
               "confidence": "high"
             },
             {
-              "claim": "Providence meta description / schema.org Physician Description (verbatim): \"Kevin N. Ganesh, MD is a specialist in Infectious Diseases who has an office at 15982 Tuscola Road, Suite B, Apple Valley, CA 92307 and can be reached at (760) 688-0084\"",
+              "claim": "Providence meta description / schema.org Physician Description (verbatim): \"Kevin Ganesh, MD is a specialist in Infectious Diseases who has an office at 15982 Tuscola Road, Suite B, Apple Valley, CA 92307 and can be reached at (760) 688-0084\"",
               "source_url": "https://www.providence.org/doctors/infectious-diseases/ca/apple-valley/kevin-ganesh-1225563026",
               "confidence": "high"
             },
             {
-              "claim": "Providence 'About Kevin N. Ganesh' section text (verbatim, entire bio): \"Dr. Ganesh specializes in Infectious Disease and is known for his dedication to patient well-being and high-quality care.\" No philosophy-of-care statement exists on the page.",
+              "claim": "Providence 'About Kevin Ganesh' section text (verbatim, entire bio): \"Dr. Ganesh specializes in Infectious Disease and is known for his dedication to patient well-being and high-quality care.\" No philosophy-of-care statement exists on the page.",
               "source_url": "https://www.providence.org/doctors/infectious-diseases/ca/apple-valley/kevin-ganesh-1225563026",
               "confidence": "high"
             },
@@ -1474,12 +1474,12 @@
               "confidence": "low"
             },
             {
-              "claim": "US News page title (from search index): \"Dr. Kevin N. Ganesh, MD | Apple Valley, CA | Internist | US News Doctors\". Search-engine snippet of the page: \"Dr. Kevin N. Ganesh is an internist in Apple Valley, CA and is affiliated with multiple hospitals in the area, including Providence St. Mary Medical Center and Desert Valley Hospital. He received his medical degree from Eastern Virginia Medical School and has been in practice between 6-10 years.\" Office listed as 15982 Tuscola Rd, Apple Valley, CA. Page itself could not be loaded (see blocked sources).",
+              "claim": "US News page title (from search index): \"Dr. Kevin Ganesh, MD | Apple Valley, CA | Internist | US News Doctors\". Search-engine snippet of the page: \"Dr. Kevin Ganesh is an internist in Apple Valley, CA and is affiliated with multiple hospitals in the area, including Providence St. Mary Medical Center and Desert Valley Hospital. He received his medical degree from Eastern Virginia Medical School and has been in practice between 6-10 years.\" Office listed as 15982 Tuscola Rd, Apple Valley, CA. Page itself could not be loaded (see blocked sources).",
               "source_url": "https://health.usnews.com/doctors/kevin-ganesh-1186392",
               "confidence": "medium"
             },
             {
-              "claim": "US News (search snippet): \"He has expertise in treating bursitis and joint inflammation, hypertension & high blood pressure, diabetes, among other conditions. Dr. Kevin N. Ganesh accepts Aetna, Cigna, Blue Cross, United Healthcare.\" Ratings/review content on US News could not be retrieved.",
+              "claim": "US News (search snippet): \"He has expertise in treating bursitis and joint inflammation, hypertension & high blood pressure, diabetes, among other conditions. Dr. Kevin Ganesh accepts Aetna, Cigna, Blue Cross, United Healthcare.\" Ratings/review content on US News could not be retrieved.",
               "source_url": "https://health.usnews.com/doctors/kevin-ganesh-1186392",
               "confidence": "medium"
             },
@@ -1580,7 +1580,7 @@
             "WebSearch tool: session budget exhausted (200/200) after the 4th search; later snippet hunting had to use curl-based engines"
           ],
           "notes": "TARGET COVERAGE: Doximity — fully captured verbatim (curl HTTP 200, 74 KB). Practo clinic pages (both URLs) — fully captured verbatim including embedded JSON (fees, timings, education, services, recommendation data); also captured the linked Practo doctor page and the duplicate Practo 'hospital' page. US News — page NOT retrievable by any route (direct, archives, proxies, search caches); only the search-engine snippet was recovered (recorded at medium confidence).\n\nKEY CONFLICTS TO FLAG: (1) Doximity lists a 'Stanford Gastroenterology Residency 2021-2027' and a Gastroenterology secondary specialty — almost certainly a merged/erroneous record; ignore. (2) Practo lists 'Medical School - University of California Irvine, 2010' alongside EVMS 2017 — the UCI line is likely an undergraduate/erroneous entry; ignore. (3) Years in practice: Doximity '5 years', Practo '6 years experience overall', US News snippet '6-10 years'. (4) Practo renders the salutation as 'Mr.' — a template artifact; ABIM board certifications (IM + ID) are confirmed on Doximity.\n\nFEES: Practo is the only source listing a fee: consultation amount 0 ('Free Consultation'). HOURS: only Practo lists hours (Mon-Sun 09:00-21:00; widget mis-renders end time as 09:00). RATINGS/REVIEWS: none on Doximity or Practo (Practo reviews_count 0, recommendation response_count 0); US News rating not retrievable. LANGUAGES: not stated on any of the three sources. CLINICAL TRIALS: none on ClinicalTrials.gov. PUBLICATIONS: exactly one PubMed-indexed paper (PMID 38219684, J Clin Virol 2024, coauthored with Dubé/Lee at USC during fellowship); Doximity's '2 publications' count includes one item not displayed publicly. NPI 1225563026 (Practo) matches the NPI in the Providence URL from search results.\n\nScratch files (raw HTML) saved under /private/tmp/claude-502/-Users-farrukhbilal-Documents-mojave/75632ce9-a87a-497b-b621-1f7cd268c269/scratchpad/ (doximity.html, practo1.html, practo2.html, practo_doc.html, practo_hosp.html).",
-          "bio_text_verbatim": "DOXIMITY (Summary): \"Dr. Kevin Ganesh is an Infectious Disease Specialist and Internist in Apple Valley, CA and is affiliated with multiple hospitals in the area, including St. Mary Medical Center, Victor Valley Global Medical Center, and Desert Valley Hospital. He received his medical degree from Eastern Virginia Medical School and has been in practice 5 years. He specializes in infectious disease. He has 2 publications.\"\n\nUS NEWS (search-engine snippet; page itself blocked): \"Dr. Kevin N. Ganesh is an internist in Apple Valley, CA and is affiliated with multiple hospitals in the area, including Providence St. Mary Medical Center and Desert Valley Hospital. He received his medical degree from Eastern Virginia Medical School and has been in practice between 6-10 years.\"\n\nPRACTO (clinic 'About'): \"Mojave Medical is a Clinic in Apple Valley 92307, Apple Valley CA. The clinic is visited by general physician like Mr. Kevin Ganesh. The timings of Mojave Medical are: Mon-Sun: 09:00-21:00. Some of the services provided by the Clinic are: Infectious Disease,General Internal Medicine,Diabetes,treating lymphedema and Heart Failure etc. Click on map to find directions to reach Mojave Medical.\"\n\nPRACTO (doctor page): \"Mr. Kevin Ganesh is a General Physician and Infectious Diseases Physician in Apple Valley 92307, Apple Valley CA and has an experience of 6 years in these fields. Mr. Kevin Ganesh practices at Mojave Medical in Apple Valley 92307, Apple Valley CA and Mojave Medical in Apple Valley 92307, Apple Valley CA. He completed Medical School from University of California Irvine in 2010,Fellowship from Keck School Of Medicine, Usc/La County Hospital in 2022 and Residency from Virginia Commonwealth Univeristy Health System Med College Of Virginia in 2020. Some of the services provided by the doctor are: Diabetes,General Internal Medicine,INFECTIOUS DISEASES,treating lymphedema and Heart Failure etc.\"",
+          "bio_text_verbatim": "DOXIMITY (Summary): \"Dr. Kevin Ganesh is an Infectious Disease Specialist and Internist in Apple Valley, CA and is affiliated with multiple hospitals in the area, including St. Mary Medical Center, Victor Valley Global Medical Center, and Desert Valley Hospital. He received his medical degree from Eastern Virginia Medical School and has been in practice 5 years. He specializes in infectious disease. He has 2 publications.\"\n\nUS NEWS (search-engine snippet; page itself blocked): \"Dr. Kevin Ganesh is an internist in Apple Valley, CA and is affiliated with multiple hospitals in the area, including Providence St. Mary Medical Center and Desert Valley Hospital. He received his medical degree from Eastern Virginia Medical School and has been in practice between 6-10 years.\"\n\nPRACTO (clinic 'About'): \"Mojave Medical is a Clinic in Apple Valley 92307, Apple Valley CA. The clinic is visited by general physician like Mr. Kevin Ganesh. The timings of Mojave Medical are: Mon-Sun: 09:00-21:00. Some of the services provided by the Clinic are: Infectious Disease,General Internal Medicine,Diabetes,treating lymphedema and Heart Failure etc. Click on map to find directions to reach Mojave Medical.\"\n\nPRACTO (doctor page): \"Mr. Kevin Ganesh is a General Physician and Infectious Diseases Physician in Apple Valley 92307, Apple Valley CA and has an experience of 6 years in these fields. Mr. Kevin Ganesh practices at Mojave Medical in Apple Valley 92307, Apple Valley CA and Mojave Medical in Apple Valley 92307, Apple Valley CA. He completed Medical School from University of California Irvine in 2010,Fellowship from Keck School Of Medicine, Usc/La County Hospital in 2022 and Residency from Virginia Commonwealth Univeristy Health System Med College Of Virginia in 2020. Some of the services provided by the doctor are: Diabetes,General Internal Medicine,INFECTIOUS DISEASES,treating lymphedema and Heart Failure etc.\"",
           "hours": "Practo (only source with hours): Mon-Sun 09:00-21:00 (embedded JSON begin_time 09:00 / end_time 21:00 for MONDAY-SUNDAY; the on-page widget mis-renders as \"Mon - Sun 09:00 - 09:00\"). Doximity and US News list no hours.",
           "insurance": [
             "Aetna (Practo 'Insurance & corporate tie ups' — only insurer named)",
@@ -1628,7 +1628,7 @@
       {
         "key": "competitors-highdesert",
         "res": {
-          "topic": "Competitive landscape for Mojave Medical (Kevin N. Ganesh, MD, Infectious Disease + Internal Medicine, Apple Valley CA): High Desert ID/IM competitors and their digital capabilities, \"Mojave Medical\" name collisions, and 8 design-reference practice websites",
+          "topic": "Competitive landscape for Mojave Medical (Kevin Ganesh, MD, Infectious Disease + Internal Medicine, Apple Valley CA): High Desert ID/IM competitors and their digital capabilities, \"Mojave Medical\" name collisions, and 8 design-reference practice websites",
           "findings": [
             {
               "title": "Direct ID competitor #1: Providence St. Mary High Desert Medical Group - Infectious Disease (Vincent A. Covelli, DO)",
@@ -1818,7 +1818,7 @@
       "attempt": 1,
       "lastToolName": "StructuredOutput",
       "lastToolSummary": "Yelp + Yahoo Local (Mojave Medical - Kevin Ganesh MD, Apple…",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788400651383,
       "tokens": 144698,
       "toolCalls": 54,
@@ -1839,7 +1839,7 @@
       "attempt": 1,
       "lastToolName": "StructuredOutput",
       "lastToolSummary": "Healthgrades + Sharecare + Vitals (primary targets), cross-…",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788401144593,
       "tokens": 192382,
       "toolCalls": 53,
@@ -1860,7 +1860,7 @@
       "attempt": 1,
       "lastToolName": "StructuredOutput",
       "lastToolSummary": "Hospital-network profiles: providence.org, psjhmedgroups.or…",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788400698322,
       "tokens": 140547,
       "toolCalls": 44,
@@ -1881,7 +1881,7 @@
       "attempt": 1,
       "lastToolName": "StructuredOutput",
       "lastToolSummary": "Doximity + US News + Practo (Dr. Kevin Naresh Ganesh, MD / …",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788400921050,
       "tokens": 116076,
       "toolCalls": 40,
@@ -1902,7 +1902,7 @@
       "attempt": 1,
       "lastToolName": "Read",
       "lastToolSummary": "/private/tmp/claude-502/-Users-farrukhbilal-Documents-mojav…",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788400881406,
       "error": "You've hit your session limit · resets 11:20pm (America/Los_Angeles)",
       "tokens": 173081,
@@ -1923,7 +1923,7 @@
       "attempt": 1,
       "lastToolName": "WebFetch",
       "lastToolSummary": "Extract verbatim: full name, specialty, bio, medical school…",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788401230376,
       "error": "You've hit your session limit · resets 11:20pm (America/Los_Angeles)",
       "tokens": 200939,
@@ -1943,13 +1943,13 @@
       "queuedAt": 1788400054914,
       "attempt": 1,
       "lastToolName": "StructuredOutput",
-      "lastToolSummary": "Competitive landscape for Mojave Medical (Kevin N. Ganesh, …",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "lastToolSummary": "Competitive landscape for Mojave Medical (Kevin Ganesh, …",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788401047464,
       "tokens": 189175,
       "toolCalls": 136,
       "durationMs": 990241,
-      "resultPreview": "{\"topic\":\"Competitive landscape for Mojave Medical (Kevin N. Ganesh, MD, Infectious Disease + Internal Medicine, Apple Valley CA): High Desert ID/IM competitors and their digital capabilities, \\\"Mojave Medical\\\" name collisions, and 8 design-reference practice websites\",\"findings\":[{\"title\":\"Direct ID competitor #1: Providence St. Mary High Desert Medical Group - Infectious Disease (Vincent A. Cov…"
+      "resultPreview": "{\"topic\":\"Competitive landscape for Mojave Medical (Kevin Ganesh, MD, Infectious Disease + Internal Medicine, Apple Valley CA): High Desert ID/IM competitors and their digital capabilities, \\\"Mojave Medical\\\" name collisions, and 8 design-reference practice websites\",\"findings\":[{\"title\":\"Direct ID competitor #1: Providence St. Mary High Desert Medical Group - Infectious Disease (Vincent A. Cov…"
     },
     {
       "type": "workflow_agent",
@@ -1965,7 +1965,7 @@
       "attempt": 1,
       "lastToolName": "WebFetch",
       "lastToolSummary": "Extract the 7 tips with any numbers, specifically about CTA…",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788400880136,
       "error": "You've hit your session limit · resets 11:20pm (America/Los_Angeles)",
       "tokens": 204239,
@@ -1986,7 +1986,7 @@
       "attempt": 1,
       "lastToolName": "WebFetch",
       "lastToolSummary": "Extract Phreesia pricing information (starting price), over…",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788400980438,
       "error": "You've hit your session limit · resets 11:20pm (America/Los_Angeles)",
       "tokens": 113524,
@@ -2007,7 +2007,7 @@
       "attempt": 1,
       "lastToolName": "WebFetch",
       "lastToolSummary": "Extract the QuickFacts table values for Apple Valley town, …",
-      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin N. Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
+      "promptPreview": "Subject: Dr. Kevin Naresh Ganesh, MD (Kevin Ganesh), Infectious Disease + Internal Medicine physician. Practice: \"Mojave Medical\" / \"Mojave Medical - Kevin Ganesh MD\", 15982 Tuscola Rd, Suite B, Apple Valley, CA 92307, phone (760) 688-0084. Known so far: Eastern Virginia Medical School MD 2017; Internal Medicine residency VCU Health 2017-2020; ID fellowship USC / LA General 2020-2022; affiliate…",
       "lastProgressAt": 1788401091209,
       "error": "You've hit your session limit · resets 11:20pm (America/Los_Angeles)",
       "tokens": 45572,

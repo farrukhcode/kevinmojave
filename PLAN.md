@@ -1,6 +1,6 @@
 # Mojave Medical — Website Pitch & Site Plan
 
-Prepared September 2026 for the pitch to Kevin N. Ganesh, MD (Mojave Medical, Apple Valley, CA).
+Prepared September 2026 for the pitch to Kevin Ganesh, MD (Mojave Medical, Apple Valley, CA).
 Companion files: `index.html` (working prototype), `src/` (source parts), `assets/` (portrait, existing brand), `research/` (raw research).
 
 ## 1. Why he should say yes (pitch angles)
