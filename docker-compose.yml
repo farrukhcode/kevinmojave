@@ -1,0 +1,46 @@
+# Coolify: create a new resource -> "Docker Compose", point it at this repo.
+# Coolify injects its own proxy labels, provisions HTTPS for the domain you set,
+# and reads SERVICE_FQDN_* / the environment variables you define in its UI.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      # --- required ---
+      PORT: 3000
+      HOST: 0.0.0.0                       # never 127.0.0.1 inside a container
+      SITE_URL: ${SITE_URL:-https://mojavemedical.org}
+      SITE_HOST: ${SITE_HOST:-mojavemedical.org}
+      # --- staff dashboard (set real values in Coolify, not here) ---
+      ADMIN_USER: ${ADMIN_USER:-}
+      ADMIN_PASS: ${ADMIN_PASS:-}
+      # --- email ---
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      MAIL_TO: ${MAIL_TO:-}
+      MAIL_INCLUDE_DETAILS: ${MAIL_INCLUDE_DETAILS:-false}
+      MAIL_CONFIRM_PATIENT: ${MAIL_CONFIRM_PATIENT:-true}
+      # --- hardening ---
+      TRUST_PROXY: "true"
+      IP_SALT: ${IP_SALT:-}
+      RATE_LIMIT_PER_HOUR: ${RATE_LIMIT_PER_HOUR:-8}
+      RETAIN_DAYS: ${RETAIN_DAYS:-0}
+    volumes:
+      - mojave-data:/app/data            # SQLite lives here and survives redeploys
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/healthz"]
+      interval: 30s
+      timeout: 4s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+volumes:
+  mojave-data:

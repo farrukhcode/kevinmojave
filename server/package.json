@@ -1,0 +1,15 @@
+{
+  "name": "mojave-medical-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mojave Medical website + appointment request API",
+  "type": "module",
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.3"
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Mojave Medical virus mark" style="color:#fff">
+  <g fill="none" stroke="currentColor" stroke-linecap="round">
+    <circle cx="50" cy="50" r="24" stroke-width="7.6"/>
+    <g stroke-width="5.6">
+      <path d="M50 22.5V12.5M50 77.5V87.5M22.5 50H12.5M77.5 50H87.5M30.6 30.6l-7.1-7.1M69.4 69.4l7.1 7.1M30.6 69.4l-7.1 7.1M69.4 30.6l7.1-7.1"/>
+    </g>
+  </g>
+  <g fill="currentColor">
+    <circle cx="50" cy="9.4" r="6.9"/><circle cx="50" cy="90.6" r="6.9"/><circle cx="9.4" cy="50" r="6.9"/><circle cx="90.6" cy="50" r="6.9"/>
+    <circle cx="21.3" cy="21.3" r="6.9"/><circle cx="78.7" cy="78.7" r="6.9"/><circle cx="21.3" cy="78.7" r="6.9"/><circle cx="78.7" cy="21.3" r="6.9"/>
+    <circle cx="40.5" cy="54.3" r="5.4"/><circle cx="47.5" cy="37" r="3.2"/><circle cx="60.5" cy="50.5" r="3.2"/>
+  </g>
+</svg>

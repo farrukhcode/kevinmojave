@@ -1,0 +1,248 @@
+<title>Mojave Medical Site Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Spectral+SC:wght@600&family=Hanken+Grotesk:wght@300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ink:#10202F;--ink-2:#2B3F52;--mute:#5F6B78;--ground:#F8F7F4;--surface:#FFFFFF;--sand:#EFEBE3;--line:#DDD8CF;--line-2:#CBC4B8;--amber:#E9A23B;--amber-deep:#8A5A0E;--amber-soft:#FBEFD9;--sage:#2F6B5B;--sage-soft:#E3EFEA;--danger:#A63D2F;--danger-soft:#F6E3E0;--on-ink:#F8F7F4;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#EDEAE3;--ink-2:#C9C3B8;--mute:#9AA3AE;--ground:#0D1822;--surface:#142230;--sand:#1A2B3B;--line:#27394B;--line-2:#354A5F;--amber:#EFAF48;--amber-deep:#F1BE66;--amber-soft:#2C2A1F;--sage:#7FC3AB;--sage-soft:#16302A;--danger:#E48A7C;--danger-soft:#3A2220;--on-ink:#0D1822;color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#EDEAE3;--ink-2:#C9C3B8;--mute:#9AA3AE;--ground:#0D1822;--surface:#142230;--sand:#1A2B3B;--line:#27394B;--line-2:#354A5F;--amber:#EFAF48;--amber-deep:#F1BE66;--amber-soft:#2C2A1F;--sage:#7FC3AB;--sage-soft:#16302A;--danger:#E48A7C;--danger-soft:#3A2220;--on-ink:#0D1822;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 "Hanken Grotesk","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--amber-deep)}
+h1,h2,h3{font-family:"Spectral",Georgia,serif;font-weight:500;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.2rem,1.4rem+2.6vw,3.4rem)}
+h2{font-size:1.9rem;margin-top:3.2rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+h3{font-size:1.25rem;margin-top:1.8rem}
+p{margin:.7rem 0;max-width:68ch}
+.wrap{max-width:1040px;margin-inline:auto;padding:clamp(1.2rem,4vw,3rem) clamp(1rem,4vw,2.5rem) 5rem}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-deep);display:inline-flex;gap:.6em;align-items:center}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--amber)}
+.wordmark{font-family:"Spectral SC","Spectral",serif;font-weight:600;letter-spacing:.09em;font-size:1.1rem}
+.hero{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;padding-bottom:1.6rem;border-bottom:1px solid var(--line)}
+.hero .meta{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--mute);text-align:right;line-height:1.7}
+.lede{font-size:1.2rem;color:var(--ink-2);max-width:62ch}
+.toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.4rem 0 0;padding:0;list-style:none}
+.toc a{text-decoration:none;color:var(--ink-2);border:1px solid var(--line-2);border-radius:999px;padding:.35rem .8rem;font-size:.9rem;background:var(--surface)}
+.toc a:hover{border-color:var(--ink);color:var(--ink)}
+.cta{display:inline-flex;gap:.5rem;align-items:center;background:var(--amber);color:#10202F;padding:.8rem 1.2rem;border-radius:12px;font-weight:600;text-decoration:none;margin-top:1rem}
+.angles{counter-reset:a;display:grid;gap:.8rem;padding:0;margin:1.2rem 0 0;list-style:none}
+.angles li{counter-increment:a;display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding:1rem 1.1rem;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.angles li::before{content:counter(a);font-family:"Spectral",serif;font-size:1.7rem;color:var(--amber-deep);line-height:1}
+.angles b{display:block;font-weight:600;margin-bottom:.15rem}
+.angles span{color:var(--ink-2);font-size:.97rem}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:1rem}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:500;background:var(--sand)}
+tr:last-child td{border-bottom:0}
+td.mono,.mono{font-family:"IBM Plex Mono",monospace;font-size:.86rem;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:.2rem .55rem;border-radius:6px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.ok{background:var(--sage-soft);color:var(--sage)}.no{background:var(--danger-soft);color:var(--danger)}.ask{background:var(--amber-soft);color:var(--amber-deep)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-top:1rem}
+.sw{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.sw div{height:64px}
+.sw p{margin:0;padding:.6rem .75rem;font-size:.85rem}
+.sw p b{display:block;font-weight:600}
+.sw p span{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--mute)}
+.type{display:grid;gap:.9rem;margin-top:1rem}
+.type div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem}
+.type small{display:block;font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:.4rem}
+.imgs{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.imgs figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.8rem}
+.imgs img{max-width:100%;display:block;border-radius:6px}
+.imgs figcaption{font-size:.84rem;color:var(--mute);margin-top:.5rem}
+.check{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.5rem}
+.check li{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-size:.97rem}
+.check li::before{content:"";width:16px;height:16px;border:1.5px solid var(--line-2);border-radius:4px;flex:none;margin-top:.25rem}
+.note{padding:1rem 1.1rem;border-radius:12px;background:var(--amber-soft);border:1px solid color-mix(in srgb,var(--amber) 45%,transparent);margin-top:1rem;font-size:.95rem}
+.mark{width:30px;height:40px;object-fit:contain;vertical-align:-12px;margin-right:.5rem}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.hero .meta{text-align:left}.imgs{grid-template-columns:1fr}}
+</style>
+<div class="wrap">
+<header class="hero">
+  <div>
+    <span class="eyebrow">Pitch brief &amp; site plan</span>
+    <h1 style="margin-top:.6rem"><img class="mark" src="data:image/png;base64,__EMBLEM__" alt="">Mojave Medical Site Plan</h1>
+    <p class="lede">Research, positioning, domain strategy, design system and build plan for the website pitch to Kevin N. Ganesh, MD, infectious disease and internal medicine, Apple Valley, California.</p>
+    <a class="cta" href="__SITE_URL__" target="_blank" rel="noopener">Open the working prototype ↗</a>
+  </div>
+  <div class="meta">Prepared 2 Sep 2026<br>Sources: 14 public directories,<br>NPI registry, PubMed, RDAP<br>Status: pitch draft</div>
+</header>
+<ul class="toc">
+  <li><a href="#why">Why he says yes</a></li><li><a href="#address">The address</a></li><li><a href="#profile">Verified profile</a></li><li><a href="#confirm">Confirm with client</a></li><li><a href="#stack">Backend &amp; hosting</a></li><li><a href="#domains">Domains</a></li><li><a href="#design">Design system</a></li><li><a href="#sitemap">Sitemap</a></li><li><a href="#stack">Booking &amp; stack</a></li><li><a href="#phases">Engagement</a></li><li><a href="#sources">Sources</a></li>
+</ul>
+
+<h2 id="why">Why he should say yes</h2>
+<ol class="angles">
+  <li><div><b>His business card already promises a website that doesn't exist.</b><span>The card photographed on his Yelp listing prints <span class="mono">MojaveMedical.org</span>. That domain is unregistered as of today. Register it before someone else does.</span></div></li>
+  <li><div><b>He moved, and the internet has not noticed.</b><span>Mojave Medical is now at <b>16041 Kamana Rd</b>, confirmed by his own Google Business Profile and by a photograph of his new building signage. Every other source still sends patients to 15982 Tuscola Rd, Suite B, because his federal provider record has not been updated since July 2025. Yelp, Healthgrades, Doximity, Providence, Practo and Vitals all mirror the stale address. Patients are being directed to the wrong building today.</span></div></li>
+  <li><div><b>Third-party directories are his homepage right now, and they're wrong.</b><span>Practo calls him "Mr. Kevin Ganesh" with "Free Consultation" and 9 AM to 9 PM seven days a week. Vitals lists his primary office in Richmond, Virginia. Doximity shows a phantom Stanford gastroenterology residency. Healthgrades and Yelp disagree on hours. A site of record fixes the source of truth.</span></div></li>
+  <li><div><b>He is the only board-certified ID physician in Apple Valley without a website.</b><span>Dr. Vincent Covelli at Providence has MyChart, online scheduling and video visits. Dr. Mallad is closed to new patients. Dr. Bhagat in Victorville has no site. The new-patient market is open.</span></div></li>
+  <li><div><b>His one negative review is about the front desk and payment, not medicine.</b><span>Online booking, clear payment information and a "we confirm by text" promise fix that structurally, while the site presents the three five-star reviews he already has.</span></div></li>
+  <li><div><b>Four other "Mojave Medical" businesses and Ganesh Medical Center at the same address confuse search engines.</b><span>Schema markup, "Apple Valley" in every title, "Suite B" everywhere and a footer disambiguation line separate his brand.</span></div></li>
+  <li><div><b>Unclaimed local-search niches.</b><span>Valley Fever, HIV and PrEP, travel medicine, post-discharge IV-antibiotic follow-up, and telehealth for Barstow and Lucerne Valley patients who currently drive to Loma Linda.</span></div></li>
+</ol>
+
+
+<h2 id="address">The address, settled</h2>
+<p>Two candidate addresses existed. The evidence is now conclusive, and it is not the map pin: it is Google's own address string plus a photograph of the building.</p>
+<div class="imgs" style="grid-template-columns:1.35fr 1fr">
+  <figure><img src="data:image/jpeg;base64,__CLINIC__" alt="Mojave Medical building exterior showing the sign and street number 16041"><figcaption>The Google Business Profile cover photo: raised letters reading "MOJAVE MEDICAL / KEVIN GANESH MD", the street number 16041 on the pilaster, and window graphics carrying his own tagline, "Infections, Wounds, Primary Care and More". EXIF timestamp 4 June 2026.</figcaption></figure>
+  <figure style="display:flex;flex-direction:column;justify-content:center">
+    <div class="tw" style="margin-top:0"><table>
+      <tr><th>Evidence</th><th>Says</th></tr>
+      <tr><td>Google Business Profile address string</td><td class="mono">16041 Kamana Rd</td></tr>
+      <tr><td>Building signage in the photo</td><td class="mono">16041</td></tr>
+      <tr><td>US Census geocoder, distance to Google pin</td><td class="mono">Kamana 45 m<br>Tuscola 155 m</td></tr>
+      <tr><td>LoopNet lease listing for that suite</td><td>withdrawn</td></tr>
+      <tr><td>CMS NPI record (individual and organizational)</td><td class="mono">Tuscola, stale since 2025-07-20</td></tr>
+    </table></div>
+    <p style="font-size:.9rem;color:var(--ink-2);margin-top:.8rem"><b>No suite number.</b> Google shows none and the signage shows none. Every "Ste A" tenant at 16041 Kamana is a different practice. Do not invent a suite.</p>
+  </figure>
+</div>
+<div class="note"><b>Step one of the engagement is not the website.</b> It is updating his CMS provider records to Kamana Road. Insurance claims route off that record, and every directory on the internet feeds from it. The move happened somewhere between 20 July 2025 and 4 June 2026, and nothing downstream has caught up.</div>
+
+<h2 id="profile">Verified profile (safe for site copy)</h2>
+<p>Every line below appears in at least two independent sources or a primary registry.</p>
+<div class="tw"><table>
+<tr><th>Item</th><th>Value</th><th>Source</th></tr>
+<tr><td>Name</td><td>Kevin Naresh Ganesh, MD · age 37</td><td>NPI registry, Healthgrades</td></tr>
+<tr><td>NPI · CA license</td><td class="mono">1225563026 · A169955 (2020–2028)</td><td>NPPES, Doximity</td></tr>
+<tr><td>Board certifications</td><td>ABIM Infectious Disease; ABIM Internal Medicine</td><td>Providence, Doximity, Healthgrades</td></tr>
+<tr><td>Medical school</td><td>Eastern Virginia Medical School, 2013–2017</td><td>DVMC credentialing data, Doximity</td></tr>
+<tr><td>Residency</td><td>Internal Medicine, VCU Health, Richmond, 2017–2020</td><td>Doximity, Healthgrades</td></tr>
+<tr><td>Fellowship</td><td>Infectious Disease, Keck School of Medicine of USC / LA General, 2020–2022</td><td>Doximity, DVMC, PubMed affiliation</td></tr>
+<tr><td>Hospital privileges</td><td>Providence St. Mary (Jul 2022), Desert Valley Hospital (Jul 2022), Victor Valley Global (Aug 2022)</td><td>DVMC credentialing data</td></tr>
+<tr><td>Practice address <b>(current)</b></td><td><b>Mojave Medical, 16041 Kamana Rd, Apple Valley CA 92307</b> — no suite</td><td>Google Business Profile, signage photo, Census geocoder</td></tr>
+<tr><td>Practice address (stale, still everywhere)</td><td>15982 Tuscola Rd, Suite B</td><td>NPPES 2025-07-20, Yelp, Healthgrades, Providence, Doximity</td></tr>
+<tr><td>Organization NPI</td><td class="mono">1578215307</td><td>NPPES: "MOJAVE MEDICAL", DBA "MOJAVE MEDICAL: KEVIN GANESH MD", authorized official Dr. Kevin Ganesh, CEO</td></tr>
+<tr><td>Google Business Profile</td><td>"Kevin Ganesh MD - Mojave Medical", category <i>Infectious disease physician</i>, <b>no website set</b></td><td>Google Maps place /g/11y3n827gf</td></tr>
+<tr><td>His own tagline</td><td>"Infections, Wounds, Primary Care and More"</td><td>window graphic in the building photo</td></tr>
+<tr><td>Phone · fax · email</td><td class="mono">(760) 688-0084 · (760) 688-0470 · mojavemedicalclinic@gmail.com</td><td>NPPES, business card, DVMC</td></tr>
+<tr><td>Hours</td><td>Mon–Fri 8–5, Sat 1–5, Sun closed</td><td>Yelp (owner-claimed)</td></tr>
+<tr><td>New patients · telehealth</td><td>Yes · Yes</td><td>Providence, Healthgrades</td></tr>
+<tr><td>Publication</td><td>Park SY, Faraci G, <b>Ganesh K</b>, Dubé MP, Lee HY. Portable Nanopore sequencing solution for next-generation HIV drug resistance testing. <i>J Clin Virol</i>, Apr 2024. PMID 38219684</td><td>PubMed</td></tr>
+<tr><td>Reviews</td><td>Yelp 4.0 (three 5-star, one 1-star); Healthgrades 5.0 from one survey, all seven sub-scores 5/5</td><td>Yelp via Yahoo Local, Healthgrades</td></tr>
+<tr><td>Insurance</td><td>Aetna, Anthem Blue Cross, Blue Shield of CA, BCBS PPO, Cigna, Health Net, UnitedHealthcare, Molina Marketplace, Oscar, CareFirst; CareMore, Blue Shield and Health Net Medicare Advantage</td><td>Healthgrades, Providence</td></tr>
+</table></div>
+
+<h3>Existing brand assets</h3>
+<p>He already has an identity: amber and grey, a shield with a physician silhouette, a virus icon standing in for the O in MOJAVE, the tagline "Infections, Wounds, and More", and a small-caps serif business card. The site refines this rather than replacing it.</p>
+<div class="imgs">
+  <figure><img src="data:image/png;base64,__LOGO__" alt="Existing Mojave Medical logo banner"><figcaption>Existing logo banner from the Yelp listing.</figcaption></figure>
+  <figure><img src="data:image/png;base64,__CARD__" alt="Existing business card"><figcaption>Business card, printing MojaveMedical.org.</figcaption></figure>
+</div>
+
+<h2 id="confirm">Confirm with Dr. Ganesh before launch</h2>
+<ul class="check">
+  <li>Hours. Yelp says 8–5 plus Saturday 1–5; Healthgrades says 9–5; Practo says 9 AM–9 PM daily. Prototype uses Yelp.</li>
+  <li>Payment. Yelp says cards accepted; the May 2025 review says cash or check only and no HSA/FSA. Prototype says cards accepted, call about HSA/FSA.</li>
+  <li>Languages. Every directory lists English only. The Spanish site is justified by the census (below), but do not imply a bilingual front desk until you know who actually speaks Spanish.</li>
+  <li>Family story. Dr. Naresh J. Ganesh, an internist of 40+ years, practices in Suite A of the same building. If he is his father, "second-generation Apple Valley physician" is a strong story. Ask first.</li>
+  <li>Domain history. mojavemedicalclinic.com was registered April 2025 by a California registrant on Squarespace and has expired. Was that his abandoned attempt?</li>
+  <li>EHR vendor, which decides the real-time booking integration (Tebra, eClinicalWorks/Healow, athena, or NexHealth on top).</li>
+  <li>Photography. The prototype uses his public Doximity headshot. Budget a session: clinic, exam room, exterior, front desk.</li>
+  <li>Second publication. Doximity counts two; PubMed shows one.</li>
+  <li>Review policy. The site quotes three verbatim Yelp reviews; he should approve them.</li>
+</ul>
+
+<h2 id="domains">Domain strategy</h2>
+<div class="tw"><table>
+<tr><th>Domain</th><th>Status</th><th>Recommendation</th></tr>
+<tr><td class="mono">mojavemedical.org</td><td><span class="pill ok">Available</span></td><td><b>Register today.</b> It is on his business cards. Primary domain.</td></tr>
+<tr><td class="mono">drkevinganesh.com · kevinganeshmd.com</td><td><span class="pill ok">Available</span></td><td>Personal-brand redirects.</td></tr>
+<tr><td class="mono">drganesh.md · mojave.md · kevinganesh.md</td><td><span class="pill ok">Available</span></td><td>.md reads as "MD". drganesh.md is a memorable short URL.</td></tr>
+<tr><td class="mono">mojavemedical.net / .clinic / .care / .doctor / .health / .us</td><td><span class="pill ok">Available</span></td><td>Defensive set; .net and .clinic at minimum.</td></tr>
+<tr><td class="mono">mojavemedicalapplevalley.com · mojaveinfectiousdisease.com · mojaveidclinic.com</td><td><span class="pill ok">Available</span></td><td>Optional SEO redirects.</td></tr>
+<tr><td class="mono">mojavemedical.com</td><td><span class="pill ask">Taken 2004</span></td><td>Parked, no nameservers, NameCheap. Worth a quiet acquisition inquiry.</td></tr>
+<tr><td class="mono">mojavemedicalclinic.com</td><td><span class="pill ask">Taken Apr 2025</span></td><td>Expired Squarespace, California registrant. Confirm whether it is his.</td></tr>
+<tr><td class="mono">mojavemed.com · drganesh.com · ganeshmd.com · mojaveid.com · highdesertid.com · ganeshid.com</td><td><span class="pill no">Taken</span></td><td>Skip.</td></tr>
+</table></div>
+<p class="mono" style="color:var(--mute);font-size:.8rem">Checked via RDAP and whois on 2 Sep 2026. Availability changes daily; recheck at registration time.</p>
+
+<h2 id="design">Design system: "Desert Clinical"</h2>
+<p>The precision of a modern clinical brand, for credibility with referring physicians and speed for patients, wearing the warmth of the High Desert and his existing amber. Deliberately not the cream-and-terracotta template look.</p>
+<div class="swatches">
+  <div class="sw"><div style="background:#10202F"></div><p><b>Ink</b><span>#10202F · night sky, text, primary buttons</span></p></div>
+  <div class="sw"><div style="background:#F8F7F4;border-bottom:1px solid #DDD8CF"></div><p><b>Ground</b><span>#F8F7F4 · page</span></p></div>
+  <div class="sw"><div style="background:#EFEBE3"></div><p><b>Sand</b><span>#EFEBE3 · secondary surfaces</span></p></div>
+  <div class="sw"><div style="background:#E9A23B"></div><p><b>Amber</b><span>#E9A23B · his brand; the one bold element</span></p></div>
+  <div class="sw"><div style="background:#8A5A0E"></div><p><b>Ochre</b><span>#8A5A0E · amber as text, AA-safe</span></p></div>
+  <div class="sw"><div style="background:#2F6B5B"></div><p><b>Sage</b><span>#2F6B5B · telehealth, success</span></p></div>
+</div>
+<div class="type">
+  <div><small>Display · Spectral 500</small><span style="font-family:'Spectral',serif;font-size:2rem;line-height:1.1">Expert care for complex infections, <i>right here in the High Desert.</i></span></div>
+  <div><small>Wordmark · Spectral SC 600</small><span class="wordmark" style="font-size:1.5rem">Mojave Medical</span> <span style="color:var(--mute);font-size:.9rem">echoes the small caps on his business card</span></div>
+  <div><small>Body · Hanken Grotesk 400</small><span>Dr. Ganesh reviews everything, explains the diagnosis in plain language, and coordinates with your hospital team and primary doctor.</span></div>
+  <div><small>Data · IBM Plex Mono</small><span class="mono">NPI 1225563026 · MON–FRI 8:00 AM – 5:00 PM · (760) 688-0084</span></div>
+</div>
+<h3>Signature elements</h3>
+<p><b>The mark.</b> His virus-as-O idea, redrawn as a clean circle with eight radial ticks. It reads as a desert sun and as a pathogen. It is the favicon, the header mark, the hero ornament and the loading spinner, and it retires the clip-art shield.</p>
+<p><b>The arch portrait.</b> A real photograph cropped into a rounded arch, nodding to the shield without the clip art. A sand block and a thin amber ring sit behind it.</p>
+<p><b>Structure that means something.</b> The hospital and training strip, the bento of conditions ordered by how often he treats them, and the three-step visit process, which is numbered because it is a real sequence.</p>
+<h3>Behaviour</h3>
+<p>Sticky header with the amber Book button; a fixed Call/Book bar on phones; full English/Spanish toggle on every page including the booking flow; light and dark themes; page transitions and a slow 60-second rotation on the mark, all disabled under <span class="mono">prefers-reduced-motion</span>. WCAG 2.2 AA contrast, skip link, visible focus, semantic landmarks, keyboard-operable calendar. Medical practices are frequent ADA-lawsuit targets, so this is not optional.</p>
+
+<h2 id="sitemap">Sitemap and page jobs</h2>
+<div class="tw"><table>
+<tr><th>Page</th><th>Job</th><th>Sections</th></tr>
+<tr><td>Home</td><td>Convert referred and searching patients</td><td>Hero, affiliations, what we treat, how a visit works, meet Dr. Ganesh, post-discharge band, reviews, insurance, location, referring physicians</td></tr>
+<tr><td>About Dr. Ganesh</td><td>Credibility for patients and colleagues</td><td>Biography, approach, training timeline, certifications, publication, hospital staff</td></tr>
+<tr><td>Conditions</td><td>Rank for condition searches</td><td>12 infectious disease services, 6 internal medicine services, referral note</td></tr>
+<tr><td>Patients</td><td>Reduce front-desk friction</td><td>What to bring, video visits, payment, insurance, forms, FAQ</td></tr>
+<tr><td>Reviews</td><td>Social proof</td><td>Ratings, verbatim quotes, leave-a-review link</td></tr>
+<tr><td>Contact</td><td>Directions, referrals, name/address/phone consistency</td><td>Address, phone, fax, email, hours, map, parking, emergency note</td></tr>
+<tr><td>Book</td><td>Appointment requests</td><td>Visit type → calendar and times → details → confirm; request reference number</td></tr>
+</table></div>
+<p>Phase-2 landing pages: Valley Fever, HIV &amp; PrEP, Travel Medicine, Wound Infections, plus seasonal posts (flu, COVID, Valley Fever season).</p>
+
+<h2 id="stack">Backend, booking and hosting</h2>
+<p>The appointment flow is not a mockup. It is a working Node service: the form posts to an API, requests are stored in SQLite on a persistent volume, and staff see them on a dashboard at <span class="mono">/admin</span> where they can filter, mark contacted, add notes and export CSV. Everything is built, tested end to end, and containerised for Coolify.</p>
+<div class="tw"><table>
+<tr><th>Question you asked</th><th>Answer</th></tr>
+<tr><td>Where do bookings go?</td><td>A <span class="mono">POST /api/appointments</span> endpoint writes to SQLite at <span class="mono">/app/data/mojave.db</span> on a Docker volume, so redeploys never lose data.</td></tr>
+<tr><td>Where do you see the leads?</td><td><span class="mono">/admin</span>, behind HTTP Basic auth. Status tiles, search, per-request detail, staff notes, one-click status changes, CSV export, and an append-only audit log of every view and change.</td></tr>
+<tr><td>Where do form emails land?</td><td>Whatever you set <span class="mono">MAIL_TO</span> to, e.g. the front desk mailbox. If SMTP is left unset, email is simply off and requests still land in the dashboard. Nothing is lost.</td></tr>
+<tr><td>What SMTP does it use?</td><td>Any provider, via <span class="mono">SMTP_HOST</span> / <span class="mono">SMTP_USER</span> / <span class="mono">SMTP_PASS</span>. For a US medical practice the provider must sign a BAA. See the table below.</td></tr>
+<tr><td>Can it run on Coolify with Docker?</td><td>Yes. Dockerfile plus compose file are in the repo, and <span class="mono">DEPLOY.md</span> is a step-by-step Coolify guide.</td></tr>
+</table></div>
+
+<h3>The email design decision</h3>
+<p>By default the staff notification email contains <b>only a reference number and the visit type</b>. The patient's name, date of birth and reason for visit stay behind the dashboard login. That is deliberate: US federal regulators treat information submitted on a medical practice's appointment form as protected health information from the moment it is submitted, even for someone who has never been a patient. Keeping it out of mail servers shrinks the blast radius and the number of vendors who need a signed agreement. A single environment variable turns full-detail emails on once the agreements are in place.</p>
+
+<h3>SMTP providers</h3>
+<div class="tw"><table>
+<tr><th>Provider</th><th>Signs a BAA</th><th>Notes</th></tr>
+<tr><td><b>Paubox</b></td><td><span class="pill ok">Yes, every account</span></td><td>Included even on the free 300 emails/month tier. Drop-in SMTP. Easiest correct answer for a solo practice.</td></tr>
+<tr><td>Google Workspace</td><td><span class="pill ok">Yes, paid editions</span></td><td>Use an App Password. Natural fit if the practice moves to Workspace email anyway.</td></tr>
+<tr><td>Amazon SES</td><td><span class="pill ok">Yes, via AWS Artifact</span></td><td>Pennies per thousand. Needs domain verification and production access.</td></tr>
+<tr><td>Microsoft 365</td><td><span class="pill ok">Included in the DPA</span></td><td>No separate signature needed.</td></tr>
+<tr><td>SendGrid, Postmark, Resend, Brevo</td><td><span class="pill no">No</span></td><td>Their own documentation says they will not sign one. Rule them out.</td></tr>
+</table></div>
+<p>Three DNS records go in before the first send: SPF, DKIM and DMARC. Exact values are in <span class="mono">DEPLOY.md</span>.</p>
+
+<h3>Coolify deployment</h3>
+<p>Use the <b>Dockerfile build pack</b>, not Docker Compose. Compose applications in Coolify give up rolling updates and force storage, environment and health configuration into the compose file instead of the UI. The specifics that actually bite:</p>
+<ul class="check">
+  <li>Bind to <span class="mono">0.0.0.0</span>, never <span class="mono">127.0.0.1</span>. This is the most common cause of a 502 on Coolify.</li>
+  <li>Set Ports Exposes to 3000 and leave Ports Mappings empty. Traefik routes from the label Coolify generates, not from your PORT variable.</li>
+  <li>Named volume at <span class="mono">/app/data</span>, never a bind mount, or the non-root container hits a permission error on every redeploy.</li>
+  <li>Turn on "Consistent Container Name" to disable rolling updates, so two containers never hold the same SQLite file open. Ten seconds of downtime per deploy beats a corrupted database.</li>
+  <li>Health check on <span class="mono">/healthz</span> with a 20 second start period. A zero second start period marks a booting Node process unhealthy and rolls the deploy back.</li>
+  <li>Back up with Coolify's native scheduled volume backup to S3, with "Stop During Backup" on. Test a restore quarterly.</li>
+</ul>
+
+<h3>Analytics</h3>
+<p>Use privacy-first analytics such as Plausible or Fathom, and keep any analytics off the booking form, its confirmation screen and the dashboard. A form submission is affirmative submission of identified health information. Meta Pixel is hard to justify on a medical site at all, and state wiretapping litigation is now a bigger practical exposure than federal enforcement.</p>
+
+<h2 id="phases">Proposed engagement</h2>
+<div class="tw"><table>
+<tr><th>Phase</th><th>Scope</th><th>Timeline</th></tr>
+<tr><td>0 · Foundations</td><td>Register domains, Google Workspace, Google Business Profile cleanup, photo session</td><td>Week 1</td></tr>
+<tr><td>1 · Launch site</td><td>Brand refresh, seven pages, bilingual, booking request form, schema, analytics</td><td>Weeks 1–3</td></tr>
+<tr><td>2 · Scheduling</td><td>EHR-connected real-time booking, patient portal link, online intake forms</td><td>Weeks 4–6</td></tr>
+<tr><td>3 · Growth</td><td>Condition landing pages, post-visit review request by text, quarterly content</td><td>Ongoing</td></tr>
+</table></div>
+
+<h2 id="sources">Sources</h2>
+<p style="font-size:.92rem;color:var(--ink-2)">Yelp, Yahoo Local, Healthgrades, Sharecare, Vitals, WebMD Care, Healthline FindCare, Providence.org, psjhmedgroups.org, providers.dvmc.com, Doximity, Practo, US News (search snippet), NPPES NPI Registry, PubMed E-utilities, RDAP and whois. LinkedIn blocks automated access; his LinkedIn headline ("Infectious Diseases Physician") is consistent with the directories. Google Maps reviews could not be retrieved programmatically and should be checked in a browser.</p>
+</div>

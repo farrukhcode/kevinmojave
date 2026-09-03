@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 288" role="img" aria-label="Mojave Medical shield emblem" style="color:#fff">
+  <defs>
+    <clipPath id="mmInnerM-w"><path d="M29 71 L108 49.5 L112 58 L176 72.5 L176 155 C176 191 150 213 100 241 C55 213 30 191 30 155 Z"/></clipPath>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-width="6.5" stroke-linejoin="round">
+    <path d="M107.5 45.5 L25 68.5 L26.5 155 C26.5 192 46 213 86 229"/>
+    <path d="M117.5 57 L179 68.5 L178 155 C178 195 152 220 97.5 244"/>
+  </g>
+  <g clip-path="url(#mmInnerM-w)">
+    <path fill="currentColor" d="M24 252 L24 186 C24 172 36 160 60 153 L85 147 L102 172 L119 147 L144 153 C168 160 180 172 180 186 L180 252 Z"/>
+    <path fill="none" d="M86 146 L102 170 L118 146 Z"/>
+    <rect x="95.5" y="134" width="13" height="14" rx="3" fill="none"/>
+    <path fill="currentColor" d="M80.5 104 h5.5 v24 c-2 3.5 -4 5 -5.5 3.5 Z M118 104 h5.5 v27.5 c-1.5 1.5 -3.5 0 -5.5 -3.5 Z"/>
+    <path fill="none" d="M86 104 h32 v24 c0 8.5 -6.5 14 -16 14 c-9.5 0 -16 -5.5 -16 -14 Z"/>
+    <path fill="currentColor" d="M87 121.5 h30 v7 c0 8 -6 13 -15 13 c-9 0 -15 -5 -15 -13 Z"/>
+    
+    <path fill="currentColor" d="M83 99.5 C83 84 91 78.5 102 78.5 C113 78.5 121 84 121 99.5 Z"/>
+    <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+      <path d="M96 149 C91 156 81 159 79 165"/>
+      <ellipse cx="80" cy="171" rx="7.5" ry="11.5"/>
+      <path d="M108 149 C112 155 119 159 122.5 164.5"/>
+    </g>
+    <circle cx="124" cy="171" r="7.2" fill="none"/>
+    <circle cx="124" cy="171" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path fill="none" d="M125 186 h4.5 v5.5 h5.5 v4.5 h-5.5 v5.5 h-4.5 v-5.5 h-5.5 v-4.5 h5.5 Z"/>
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke-width="2.6" d="M58 89 V141"/>
+      <path stroke-width="1.7" d="M41 99 C46 92 54 93 58 98 C62 93 70 92 75 99 C69 103 63 102 58 100 C53 102 47 103 41 99 Z"/>
+      <path stroke-width="1.9" d="M50 104 C66 109 50 117 66 123 C50 129 66 137 54 140"/>
+      <path stroke-width="1.9" d="M66 104 C50 109 66 117 50 123 C66 129 50 137 62 140"/>
+    </g>
+    <circle cx="58" cy="88.5" r="2.6" fill="currentColor"/>
+  </g>
+</svg>

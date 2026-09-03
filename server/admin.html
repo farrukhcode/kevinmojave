@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Appointment requests · Mojave Medical</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ink:#10202F;--ink-2:#2B3F52;--mute:#5F6B78;--ground:#F8F7F4;--surface:#fff;--sand:#EFEBE3;--line:#DDD8CF;--line-2:#CBC4B8;
+ --amber:#E9A23B;--amber-deep:#8A5A0E;--amber-soft:#FBEFD9;--sage:#2F6B5B;--sage-soft:#E3EFEA;--danger:#A63D2F;--danger-soft:#F6E3E0;
+ --blue:#2A5A8A;--blue-soft:#E1EAF3;--on-ink:#F8F7F4;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#EDEAE3;--ink-2:#C9C3B8;--mute:#9AA3AE;--ground:#0D1822;--surface:#142230;--sand:#1A2B3B;--line:#27394B;--line-2:#354A5F;--amber:#EFAF48;--amber-deep:#F1BE66;--amber-soft:#2C2A1F;--sage:#7FC3AB;--sage-soft:#16302A;--danger:#E48A7C;--danger-soft:#3A2220;--blue:#8FB6DC;--blue-soft:#16283A;--on-ink:#0D1822;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.5 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+h1{font-family:"Spectral",Georgia,serif;font-weight:500;font-size:1.5rem;margin:0}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.bar{max-width:1400px;margin-inline:auto;padding:.9rem clamp(.8rem,2.5vw,1.6rem);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.6rem}
+.brand svg{width:26px;height:26px;color:var(--amber)}
+.brand small{display:block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+main{max-width:1400px;margin-inline:auto;padding:clamp(1rem,2.5vw,1.6rem)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:.7rem;margin-bottom:1.2rem}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--line-2);transform:translateY(-1px)}
+.tile[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.tile b{display:block;font-family:"IBM Plex Mono",monospace;font-size:1.7rem;font-weight:500;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile span{font-size:.78rem;color:var(--mute);letter-spacing:.05em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
+.tile.hot b{color:var(--amber-deep)}
+.controls{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+input[type=search],select,textarea{font:inherit;padding:.55rem .7rem;border:1px solid var(--line-2);border-radius:9px;background:var(--surface);color:var(--ink)}
+input[type=search]{min-width:250px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem .9rem;border-radius:9px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font:600 .9rem "Hanken Grotesk",sans-serif;cursor:pointer;text-decoration:none}
+.btn:hover{border-color:var(--ink)}
+.btn-ink{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.wrap-t{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th{position:sticky;top:0;background:var(--sand);text-align:left;font:500 .68rem/1.4 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding:.6rem .8rem;border-bottom:1px solid var(--line);white-space:nowrap;z-index:1}
+td{padding:.65rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr.row{cursor:pointer}
+tr.row:hover td{background:var(--sand)}
+tr.row.new td:first-child{box-shadow:inset 3px 0 0 var(--amber)}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;padding:.2rem .55rem;border-radius:999px;font:500 .7rem/1.5 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.s-new{background:var(--amber-soft);color:var(--amber-deep)}
+.s-contacted{background:var(--blue-soft);color:var(--blue)}
+.s-scheduled{background:var(--sage-soft);color:var(--sage)}
+.s-declined,.s-spam{background:var(--danger-soft);color:var(--danger)}
+.detail td{background:var(--sand)}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.8rem 1.4rem;margin-bottom:1rem}
+.dgrid div span{display:block;font:500 .64rem/1.6 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.dgrid div b{font-weight:600;word-break:break-word}
+.acts{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+textarea{width:100%;min-height:62px;resize:vertical;margin-top:.5rem}
+.empty{padding:3.5rem 1rem;text-align:center;color:var(--mute)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--on-ink);padding:.65rem 1.1rem;border-radius:10px;font-size:.9rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50}
+.toast.on{opacity:1}
+.note{margin-top:1.2rem;padding:.9rem 1.1rem;border-radius:11px;background:var(--amber-soft);border:1px solid color-mix(in srgb,var(--amber) 45%,transparent);font-size:.88rem}
+@media (max-width:760px){th:nth-child(4),td:nth-child(4),th:nth-child(7),td:nth-child(7){display:none}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <div class="brand">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="24" cy="24" r="10"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M9.9 9.9l4.2 4.2M33.9 33.9l4.2 4.2M9.9 38.1l4.2-4.2M33.9 14.1l4.2-4.2"/><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"/></svg>
+    <div><h1>Appointment requests</h1><small>Mojave Medical · staff only</small></div>
+  </div>
+  <div style="margin-left:auto" class="acts">
+    <button class="btn" id="refresh">Refresh</button>
+    <a class="btn" id="csv" href="/api/admin/export.csv">Export CSV</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="tiles" id="tiles"></div>
+  <div class="controls">
+    <input type="search" id="q" placeholder="Search name, phone, reference…" aria-label="Search requests">
+    <select id="status" aria-label="Filter by status"></select>
+    <span class="mono" style="color:var(--mute);font-size:.82rem" id="count"></span>
+  </div>
+  <div class="wrap-t"><table>
+    <thead><tr><th>Ref</th><th>Received</th><th>Patient</th><th>Phone</th><th>Visit</th><th>Requested</th><th>Insurance</th><th>Status</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div>
+  <div class="note"><b>Reminder.</b> This page shows patient information. Do not screenshot it into email or chat. Requests are stored on your own server; the notification emails deliberately contain only a reference number unless you have turned detail emails on.</div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let DATA={rows:[],counts:{},statuses:[]}, open=null, timer;
+const LABEL={all:"All",new:"New",contacted:"Contacted",scheduled:"Scheduled",declined:"Declined",spam:"Spam"};
+const fmt=iso=>{const d=new Date(iso);return d.toLocaleString(undefined,{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})};
+const ago=iso=>{const m=(Date.now()-new Date(iso))/6e4;if(m<60)return Math.round(m)+"m ago";if(m<1440)return Math.round(m/60)+"h ago";return Math.round(m/1440)+"d ago"};
+
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(timer);timer=setTimeout(()=>e.classList.remove("on"),2400)}
+
+async function load(){
+  const p=new URLSearchParams({status:$("#status").value||"all",q:$("#q").value.trim()});
+  const r=await fetch("/api/admin/appointments?"+p,{headers:{accept:"application/json"}});
+  if(!r.ok){toast("Could not load ("+r.status+")");return}
+  DATA=await r.json(); render();
+  $("#csv").href="/api/admin/export.csv?status="+encodeURIComponent($("#status").value||"all");
+}
+function renderTiles(){
+  const total=Object.values(DATA.counts).reduce((a,b)=>a+b,0);
+  const order=["all",...DATA.statuses];
+  $("#tiles").innerHTML=order.map(s=>{
+    const n=s==="all"?total:(DATA.counts[s]||0);
+    const on=($("#status").value||"all")===s;
+    return `<button class="tile${s==="new"&&n?" hot":""}" data-s="${s}" aria-pressed="${on}"><b>${n}</b><span>${LABEL[s]||s}</span></button>`;
+  }).join("");
+}
+function render(){
+  renderTiles();
+  $("#count").textContent=DATA.rows.length+" shown";
+  if(!DATA.rows.length){$("#rows").innerHTML='<tr><td colspan="8"><div class="empty">No requests match this filter.</div></td></tr>';return}
+  $("#rows").innerHTML=DATA.rows.map(r=>{
+    const when=r.requested_date?`${r.requested_date}${r.requested_time?" · "+r.requested_time:""}`:"—";
+    const head=`<tr class="row ${r.status}" data-ref="${esc(r.ref)}">
+      <td class="mono">${esc(r.ref)}</td>
+      <td><span title="${esc(r.created_at)}">${esc(fmt(r.created_at))}</span><br><span style="color:var(--mute);font-size:.78rem">${esc(ago(r.created_at))}</span></td>
+      <td><b>${esc(r.last_name)}, ${esc(r.first_name)}</b>${r.patient_status==="est"?'<br><span style="color:var(--mute);font-size:.78rem">established</span>':""}</td>
+      <td class="mono"><a href="tel:${esc(String(r.phone).replace(/\\D/g,""))}" onclick="event.stopPropagation()">${esc(r.phone)}</a></td>
+      <td>${esc(r.visit_label||r.visit_type)}</td>
+      <td class="mono">${esc(when)}</td>
+      <td>${esc(r.insurance||"—")}</td>
+      <td><span class="pill s-${esc(r.status)}">${esc(LABEL[r.status]||r.status)}</span></td></tr>`;
+    if(open!==r.ref) return head;
+    return head+`<tr class="detail"><td colspan="8">
+      <div class="dgrid">
+        <div><span>Date of birth</span><b class="mono">${esc(r.dob||"—")}</b></div>
+        <div><span>Email</span><b>${r.email?`<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>`:"—"}</b></div>
+        <div><span>Referred by</span><b>${esc(r.referred_by||"—")}</b></div>
+        <div><span>Language</span><b>${r.lang==="es"?"Spanish":"English"}</b></div>
+        <div><span>Duration</span><b>${esc(r.duration_min||"—")} min</b></div>
+        <div style="grid-column:1/-1"><span>Reason given</span><b>${esc(r.reason||"—")}</b></div>
+      </div>
+      <div class="acts">
+        ${DATA.statuses.map(s=>`<button class="btn${s===r.status?" btn-ink":""}" data-set="${s}" data-ref="${esc(r.ref)}">${LABEL[s]||s}</button>`).join("")}
+        <a class="btn" href="tel:${esc(String(r.phone).replace(/\\D/g,""))}">Call ${esc(r.phone)}</a>
+      </div>
+      <textarea data-notes="${esc(r.ref)}" placeholder="Staff notes (saved when you click away)">${esc(r.staff_notes||"")}</textarea>
+    </td></tr>`;
+  }).join("");
+}
+async function save(ref,patch){
+  const r=await fetch("/api/admin/appointments/"+encodeURIComponent(ref),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(patch)});
+  if(!r.ok){toast("Save failed");return}
+  toast("Saved "+ref); await load();
+}
+document.addEventListener("click",e=>{
+  const tile=e.target.closest(".tile");
+  if(tile){$("#status").value=tile.dataset.s;load();return}
+  const set=e.target.closest("[data-set]");
+  if(set){save(set.dataset.ref,{status:set.dataset.set});return}
+  const row=e.target.closest("tr.row");
+  if(row){open=open===row.dataset.ref?null:row.dataset.ref;render();return}
+  if(e.target.id==="refresh"){load();return}
+});
+document.addEventListener("focusout",e=>{
+  const ta=e.target.closest("[data-notes]");
+  if(ta) save(ta.dataset.notes,{staff_notes:ta.value});
+});
+$("#q").addEventListener("input",()=>{clearTimeout(window._d);window._d=setTimeout(load,280)});
+$("#status").addEventListener("change",load);
+$("#status").innerHTML=["all","new","contacted","scheduled","declined","spam"].map(s=>`<option value="${s}">${LABEL[s]}</option>`).join("");
+load(); setInterval(load,60000);
+</script>
+</body>
+</html>
