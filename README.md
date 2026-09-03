@@ -28,7 +28,7 @@ to browser storage instead of the API.
 | `server/lib/` | `db.js` (SQLite), `mail.js` (SMTP), `validate.js`, `util.js` |
 | `server/admin.html` | staff dashboard |
 | `Dockerfile`, `docker-compose.yml`, `.env.example` | deployment |
-| `brand/` | his logo rebuilt as vector: shield, virus mark, horizontal and stacked lockups, colour and white, SVG + transparent PNG. `build-logo.js` regenerates them from `shield.svg`, `virus.svg` and the outlined text. |
+| `brand/` | his own logo, extracted from the source artwork with a real alpha channel. `extract-from-source.js` regenerates it from `assets/logo-source-hd.png`. |
 | `assets/` | headshot, clinic exterior photo, his original logo raster and business card |
 | `PLAN.md`, `DEPLOY.md` | the pitch brief and the Coolify guide |
 | `research/` | raw research output |
@@ -48,23 +48,20 @@ Edit copy in `src/part3-content.js`, then run `./build.sh`. Nothing else needs t
 
 ## Brand assets
 
-Everything in `brand/` is transparent and vector, rebuilt from the raster logo on his Yelp
-listing and the signage on his building. Colours are sampled from the original: amber
-`#FEBD5A`, shield grey `#BCBCBC`, wordmark grey `#737373`. Fonts are outlined into paths,
-so the SVGs need no font installed.
+`brand/` holds his actual logo, not a redraw. The background was flood-filled away and the
+edges feathered, so every file has a true alpha channel and sits cleanly on light or dark.
 
 | File | Use |
 |---|---|
-| `mojave-medical-logo-horizontal-primary-care.svg` / `@2000.png` | primary lockup, tagline as on the building |
-| `mojave-medical-logo-horizontal.svg` / `-classic@2000.png` | the Yelp-era tagline "Infections, Wounds, and More" |
-| `mojave-medical-logo-horizontal-white.svg` / `@2000.png` | one-colour white for dark backgrounds, like the window graphic |
-| `mojave-medical-logo-stacked.svg` / `-white` | square-ish layout for social profiles and print |
-| `mojave-medical-shield.svg` / `-white` | the emblem alone |
-| `mojave-medical-virus.svg` / `-white`, `@512.png`, `@1024.png` | the virus mark alone; it is the favicon and the rotating O in the header |
+| `mojave-medical-emblem.png` | the shield with the masked physician. Header, portrait card, footer, printable forms, app icon. |
+| `mojave-medical-virus-mark.png` | the virus alone. It is the rotating O in the wordmark. |
+| `mojave-medical-logo-full.png` | the whole lockup, for light backgrounds and print. |
+| `mojave-medical-logo-full-dark.png` | the same, with only the type lightened for dark backgrounds. |
+| `mojave-medical-app-icon.png` | the emblem on an ink tile, 512px. |
+| `extract-from-source.js` | regenerates all of the above from `assets/logo-source-hd.png`. |
 
-The site header sets the wordmark in Montserrat with the virus as the O, rotating once a
-minute (and not at all when the visitor prefers reduced motion). The footer and the
-printable forms carry the full lockup.
+Favicons at 32, 180 and 192 are generated into `server/public/` by `build.sh`.
+`brand/_superseded-vector/` holds an earlier vector redraw; it is not used.
 
 ## Notes
 

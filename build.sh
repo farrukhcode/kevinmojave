@@ -47,7 +47,7 @@ if [ -x "$CHROME" ]; then
 fi
 rm -f server/public/favicon.svg
 
-mkdir -p server/public/brand && cp brand/mojave-medical-*.svg server/public/brand/
+mkdir -p server/public/brand
 for f in brand/*.png(N); do cp "$f" server/public/brand/; done
 
 cat > server/public/robots.txt <<'TXT'
