@@ -4,6 +4,22 @@
   const $ = (s, r) => (r || document).querySelector(s);
   const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   let lang = "en";
+  let theme = "auto";
+  try { const th = localStorage.getItem("mm_theme"); if (th === "light" || th === "dark" || th === "auto") theme = th; } catch (e) {}
+  function applyTheme() {
+    const r = document.documentElement;
+    if (theme === "auto") r.removeAttribute("data-theme"); else r.setAttribute("data-theme", theme);
+    const dark = theme === "dark" || (theme === "auto" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    let m = document.querySelector('meta[name="theme-color"]');
+    if (!m) { m = document.createElement("meta"); m.name = "theme-color"; document.head.appendChild(m); }
+    m.setAttribute("content", dark ? "#0D1822" : "#F8F7F4");
+  }
+  applyTheme();
+  if (window.matchMedia) {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const onSys = () => { if (theme === "auto") applyTheme(); };
+    if (mq.addEventListener) mq.addEventListener("change", onSys); else if (mq.addListener) mq.addListener(onSys);
+  }
   try { const l = localStorage.getItem("mm_lang"); if (l === "es" || l === "en") lang = l; } catch (e) {}
   const t = x => x == null ? "" : (typeof x === "string" ? x : (x[lang] != null ? x[lang] : (x.en != null ? x.en : "")));
 
@@ -43,7 +59,10 @@
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/>',
     file: '<path d="M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6"/>',
     ext: '<path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/>',
-    star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>'
+    star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+    auto: '<circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18" fill="currentColor" stroke="none"/>',
+    sun: '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>',
+    moon: '<path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/>'
   };
   const ico = (n, cls) => '<svg class="i' + (cls ? " " + cls : "") + '" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (I[n] || "") + "</svg>";
   const MARK = cls => '<img class="' + (cls || "mark") + '" src="' + EMBLEM + '" alt="" aria-hidden="true" width="191" height="252">';
@@ -442,7 +461,8 @@
   function renderChrome() {
     const cur = currentPage();
     document.documentElement.lang = lang;
-    $("#nav").innerHTML = C.nav.map(n => '<a href="#/' + (n.id === "home" ? "" : n.id) + '"' + (cur === n.id ? ' aria-current="page"' : "") + ">" + esc(t(n)) + "</a>").join("");
+    $("#nav").innerHTML = C.nav.map(n => '<a href="#/' + (n.id === "home" ? "" : n.id) + '"' + (cur === n.id ? ' aria-current="page"' : "") + ">" + esc(t(n)) + "</a>").join("") +
+      '<div class="nav-extras"><span class="theme-switch" role="group" aria-label="' + esc(t(C.ui.themeLabel)) + '"></span></div>';
     $("#brand-shield").innerHTML = '<img src="' + EMBLEM + '" alt="" aria-hidden="true" width="191" height="252">';
     $("#brand-virus").innerHTML = '<img class="spin" src="' + VIRUS_MARK + '" alt="" aria-hidden="true" width="87" height="87">';
     $("#head-call").innerHTML = ico("phone") + PHONE;
@@ -451,6 +471,10 @@
     $("#menu-btn").setAttribute("aria-label", t(C.ui.menu));
     $(".skip").textContent = t(C.ui.skip);
     document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+    const themes = [["auto", "auto"], ["light", "sun"], ["dark", "moon"]];
+    const switchHtml = themes.map(([id, ic]) =>
+      '<button type="button" data-theme-set="' + id + '" aria-pressed="' + (theme === id) + '" title="' + esc(t(C.ui.themes[id])) + '" aria-label="' + esc(t(C.ui.themes[id])) + '">' + ico(ic) + "</button>").join("");
+    document.querySelectorAll(".theme-switch").forEach(el => { el.innerHTML = switchHtml; });
     $("#mobile-bar").innerHTML = '<a class="btn btn-ghost" href="' + PHONE_TEL + '">' + ico("phone") + esc(t(C.ui.call)) + '</a><a class="btn btn-amber" href="#/book">' + ico("cal") + esc(t(C.ui.book)) + "</a>";
     const F = C.footer;
     $("#site-foot").innerHTML = '<div class="wrap foot-grid"><div><a class="foot-lockup" href="#/" aria-label="Mojave Medical home">' + LOCKUP() + '</a><p class="small" style="max-width:34ch">' + esc(t(F.tag)) + '</p><address class="addr small" style="margin-top:1rem">' + esc(ADDRESS.line1) + "<br>" + esc(ADDRESS.city) + "</address></div>" +
@@ -474,6 +498,8 @@
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
   }
   document.addEventListener("click", e => {
+    const tb = e.target.closest("[data-theme-set]");
+    if (tb) { theme = tb.dataset.themeSet; try { localStorage.setItem("mm_theme", theme); } catch (err) {} applyTheme(); renderChrome(); return; }
     const lb = e.target.closest(".lang button"); if (lb) { lang = lb.dataset.lang; try { localStorage.setItem("mm_lang", lang); } catch (err) {} route(); return; }
     if (e.target.closest("#menu-btn")) { const hd = $("#site-head"); const open = hd.classList.toggle("open"); $("#menu-btn").setAttribute("aria-expanded", String(open)); $("#menu-btn").innerHTML = ico(open ? "x" : "menu"); return; }
     if (e.target.closest("#book-main")) onBookClick(e);
