@@ -11,8 +11,22 @@ DATA_DIR=./data ADMIN_USER=dev ADMIN_PASS=dev PORT=3000 npm start
 ```
 
 Site at `http://localhost:3000`, staff dashboard at `http://localhost:3000/admin`.
-`index.html` also opens straight from disk with no server; the booking form then saves
-to browser storage instead of the API.
+Over plain `http`, add `NODE_ENV=development` so the session cookie is not dropped for
+being non-Secure.
+
+`index.html` also opens straight from disk for design work, but the booking calendar needs
+the server: openings come from `/api/availability`, and with no server the page says so and
+points at the phone number rather than inventing times.
+
+Check everything still works after a change (use a throwaway `DATA_DIR`; the suite books,
+blocks and closes days):
+
+```
+cd server
+DATA_DIR=/tmp/mm-test ADMIN_USER=test ADMIN_PASS=secret123 PORT=3999 \
+  SITE_HOST=localhost NODE_ENV=development RATE_LIMIT_PER_HOUR=50 node server.js &
+npm test
+```
 
 ## Layout
 
@@ -25,8 +39,9 @@ to browser storage instead of the API.
 | `src/map.svg.txt` | schematic map, generated from real OpenStreetMap geometry |
 | `src/plan-template.html` | the pitch brief page |
 | `server/server.js` | HTTP server: static files, appointment API, admin |
-| `server/lib/` | `db.js` (SQLite), `mail.js` (SMTP), `validate.js`, `util.js` |
-| `server/admin.html` | staff dashboard |
+| `server/lib/` | `db.js` (SQLite), `schedule.js` (availability engine), `security.js` (sessions, CSRF, lockout), `mail.js` (SMTP), `validate.js`, `util.js` |
+| `server/admin.html` | staff dashboard: requests, day calendar, weekly hours, activity log |
+| `server/test.mjs` | end-to-end checks for booking, scheduling and the security controls |
 | `Dockerfile`, `docker-compose.yml`, `.env.example` | deployment |
 | `brand/` | his own logo, extracted from the source artwork with a real alpha channel. `extract-from-source.js` regenerates it from `assets/logo-source-hd.png`. |
 | `assets/` | headshot, clinic exterior photo, his original logo raster and business card |
@@ -40,11 +55,37 @@ Edit copy in `src/part3-content.js`, then run `./build.sh`. Nothing else needs t
 | Route | Auth |
 |---|---|
 | `GET /` and the site | public |
+| `GET /api/availability` | public, rate limited |
 | `POST /api/appointments` | public, rate limited to 8/hour per IP |
-| `GET /admin` | Basic auth |
-| `GET /api/admin/appointments`, `POST /api/admin/appointments/:ref` | Basic auth |
-| `GET /api/admin/export.csv`, `GET /api/admin/audit` | Basic auth |
+| `POST /api/admin/login`, `/logout`, `GET /api/admin/session` | public / session |
+| `GET /admin` | the page is public, all of its data is not |
+| `GET`/`POST /api/admin/appointments`, `POST /api/admin/appointments/:ref` | staff |
+| `GET /api/admin/day`, `GET /api/admin/agenda` | staff |
+| `GET /api/admin/schedule`, `POST .../rules`, `.../settings`, `.../override` | staff |
+| `POST /api/admin/blocks` | staff |
+| `GET /api/admin/export.csv`, `GET /api/admin/audit` | staff |
 | `GET /healthz` | public, no data |
+
+Staff auth is a signed `HttpOnly` / `SameSite=Strict` session cookie from the sign-in form;
+the same credentials also work as HTTP Basic for scripts. Writes additionally require a
+same-origin request, a JSON content type, and — for a browser session — a CSRF token.
+
+## How appointments work
+
+The website never invents an opening. `GET /api/availability` computes them from the
+schedule staff keep in the dashboard:
+
+- **Weekly hours** — one or more windows per weekday, each with its own slot length and how
+  many patients can be seen at once. Two windows on a day is how you get a lunch break.
+- **Overrides** — one date that is closed, or that has its own hours.
+- **Blocks** — an hour for hospital rounds, or a date range for a conference. A block closes
+  the time outright, whatever the capacity is.
+- **Rules** — how much notice a booking needs, and how far ahead the calendar opens.
+
+A request holds its slot the moment it arrives, inside a transaction, so two patients cannot
+book the same time; a visit longer than one slot holds every slot it covers. If the slot goes
+while a patient is filling in their details, the server returns `409` and the page says so
+instead of pretending the booking worked.
 
 ## Brand assets
 
@@ -72,3 +113,7 @@ Favicons at 32, 180 and 192 are generated into `server/public/` by `build.sh`.
   behind the dashboard login. `MAIL_INCLUDE_DETAILS=true` changes that, but only do it
   once a BAA is signed with the email provider.
 - The clinic photo comes from his own Google Business Profile.
+- The booking form has a hidden spam trap. A filled trap **flags** the request as spam and
+  still stores it — it never discards it. An autofill profile or a password manager can fill
+  a hidden field as easily as a bot can, and a request thrown away silently is a patient who
+  believes they have an appointment.

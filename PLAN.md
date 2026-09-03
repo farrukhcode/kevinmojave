@@ -65,9 +65,14 @@ The move happened between 20 July 2025 and 4 June 2026. His CMS NPI records, ind
 
 ## 3. Domain strategy
 
+**Decided (Sept 3 2026): the practice is using `mojavemedclinic.com` as the primary domain,
+with `kevin.ganesh@mojavemedclinic.com` as the contact address.** The table below is the
+original availability research and is kept for the defensive registrations still worth taking.
+
 | Domain | Status (RDAP, Sept 2 2026) | Recommendation |
 |---|---|---|
-| mojavemedical.org | **Available** | Register immediately. It is on his business cards. Primary domain. |
+| mojavemedclinic.com | **Chosen** | Primary domain. Site, email and all canonical URLs point here. |
+| mojavemedical.org | Available | Still worth registering as a defensive redirect; it is on his business cards. |
 | drkevinganesh.com, kevinganeshmd.com | Available | Register as defensive redirects and for the personal brand. |
 | mojavemedical.care / .clinic / .doctor / .health / .net / .us | Available | Optional defensive set (.net and .clinic at minimum). |
 | mojavemedicalapplevalley.com, mojaveinfectiousdisease.com, mojaveidclinic.com | Available | Optional SEO redirects. |
@@ -109,7 +114,7 @@ Phase-2 pages: Valley Fever, HIV & PrEP, Travel Medicine, Wound Infections (each
 - **Telehealth:** Doxy.me (free HIPAA tier) or the EHR's built-in video.
 - **Analytics:** privacy-first (Plausible or Fathom). No Meta Pixel or Google Ads remarketing on a medical site; FTC and OCR have penalized practices for this.
 - **Local SEO:** Physician + MedicalClinic JSON-LD (already in the prototype), NAP cleanup on Google, Yelp, Healthgrades, Practo, Vitals and the DVMC directory, sameAs links, "Apple Valley" and "High Desert" in titles.
-- **Email:** move from the Gmail address to hello@mojavemedical.org. For sending, Paubox includes a BAA on every account including its free tier; Amazon SES and Google Workspace also sign one. SendGrid, Postmark, Resend and Brevo will not, so they are out.
+- **Email:** the practice address is now kevin.ganesh@mojavemedclinic.com; add a shared frontdesk@ alias before launch so requests do not sit in one personal inbox. For sending, Paubox includes a BAA on every account including its free tier; Amazon SES and Google Workspace also sign one. SendGrid, Postmark, Resend and Brevo will not, so they are out.
 
 ## 7. Proposed engagement
 

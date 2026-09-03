@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Appointment requests · Mojave Medical</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Schedule &amp; requests · Mojave Medical</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -16,12 +16,17 @@
 body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.5 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
 h1{font-family:"Spectral",Georgia,serif;font-weight:500;font-size:1.5rem;margin:0}
+h2{font-family:"Spectral",Georgia,serif;font-weight:500;font-size:1.2rem;margin:0 0 .8rem}
 header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
 .bar{max-width:1400px;margin-inline:auto;padding:.9rem clamp(.8rem,2.5vw,1.6rem);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:.6rem}
 .brand svg{width:26px;height:26px;color:var(--amber)}
 .brand small{display:block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+nav.tabs{max-width:1400px;margin-inline:auto;padding:0 clamp(.8rem,2.5vw,1.6rem);display:flex;gap:.2rem;flex-wrap:wrap}
+nav.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:.6rem .9rem;font:600 .92rem "Hanken Grotesk",sans-serif;color:var(--mute);cursor:pointer}
+nav.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--amber)}
 main{max-width:1400px;margin-inline:auto;padding:clamp(1rem,2.5vw,1.6rem)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;margin-bottom:1.1rem}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:.7rem;margin-bottom:1.2rem}
 .tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:border-color .15s,transform .15s}
 .tile:hover{border-color:var(--line-2);transform:translateY(-1px)}
@@ -30,12 +35,17 @@ main{max-width:1400px;margin-inline:auto;padding:clamp(1rem,2.5vw,1.6rem)}
 .tile span{font-size:.78rem;color:var(--mute);letter-spacing:.05em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
 .tile.hot b{color:var(--amber-deep)}
 .controls{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
-input[type=search],select,textarea{font:inherit;padding:.55rem .7rem;border:1px solid var(--line-2);border-radius:9px;background:var(--surface);color:var(--ink)}
-input[type=search]{min-width:250px}
+input,select,textarea{font:inherit;padding:.5rem .65rem;border:1px solid var(--line-2);border-radius:9px;background:var(--surface);color:var(--ink);max-width:100%}
+input[type=search]{min-width:240px}
+input[type=checkbox]{padding:0;width:auto}
+label.lbl{display:block;font:500 .64rem/1.8 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 :focus-visible{outline:2px solid var(--amber);outline-offset:2px}
-.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem .9rem;border-radius:9px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font:600 .9rem "Hanken Grotesk",sans-serif;cursor:pointer;text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .85rem;border-radius:9px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font:600 .88rem "Hanken Grotesk",sans-serif;cursor:pointer;text-decoration:none}
 .btn:hover{border-color:var(--ink)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
 .btn-ink{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.btn-sm{padding:.3rem .6rem;font-size:.8rem;border-radius:7px}
+.btn-danger{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 40%,transparent)}
 .wrap-t{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:auto}
 table{border-collapse:collapse;width:100%;font-size:.92rem}
 th{position:sticky;top:0;background:var(--sand);text-align:left;font:500 .68rem/1.4 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding:.6rem .8rem;border-bottom:1px solid var(--line);white-space:nowrap;z-index:1}
@@ -55,121 +65,650 @@ tr:last-child td{border-bottom:0}
 .dgrid div b{font-weight:600;word-break:break-word}
 .acts{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
 textarea{width:100%;min-height:62px;resize:vertical;margin-top:.5rem}
-.empty{padding:3.5rem 1rem;text-align:center;color:var(--mute)}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--on-ink);padding:.65rem 1.1rem;border-radius:10px;font-size:.9rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50}
+.empty{padding:3rem 1rem;text-align:center;color:var(--mute)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--on-ink);padding:.65rem 1.1rem;border-radius:10px;font-size:.9rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50;max-width:90vw;text-align:center}
 .toast.on{opacity:1}
 .note{margin-top:1.2rem;padding:.9rem 1.1rem;border-radius:11px;background:var(--amber-soft);border:1px solid color-mix(in srgb,var(--amber) 45%,transparent);font-size:.88rem}
-@media (max-width:760px){th:nth-child(4),td:nth-child(4),th:nth-child(7),td:nth-child(7){display:none}}
+/* login */
+.login{max-width:380px;margin:14vh auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.6rem}
+.login label{margin-top:.7rem}
+.login input{width:100%;margin-top:.2rem}
+.login .btn{width:100%;justify-content:center;margin-top:1.1rem}
+.err{color:var(--danger);font-size:.86rem;margin-top:.7rem;min-height:1.2em}
+/* day timeline */
+.daynav{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem}
+.slotlist{display:grid;gap:.35rem}
+.slot{display:grid;grid-template-columns:5.4rem 1fr auto;gap:.7rem;align-items:center;padding:.5rem .7rem;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.slot.free{border-style:dashed;color:var(--mute)}
+.slot.appt{background:var(--sage-soft);border-color:color-mix(in srgb,var(--sage) 35%,transparent)}
+.slot.req{background:var(--amber-soft);border-color:color-mix(in srgb,var(--amber) 40%,transparent)}
+.slot.busy{background:var(--danger-soft);border-color:color-mix(in srgb,var(--danger) 30%,transparent)}
+.slot .when{font:500 .84rem "IBM Plex Mono",monospace;white-space:nowrap}
+.slot.wide{grid-template-columns:minmax(11rem,auto) 1fr auto}
+.slot .what b{font-weight:600}
+.slot .what small{display:block;color:var(--mute);font-size:.78rem}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem;margin-bottom:1rem}
+.wk button{padding:.5rem .3rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;cursor:pointer;text-align:center}
+.wk button[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.wk button small{display:block;font:500 .62rem "IBM Plex Mono",monospace;color:var(--mute);text-transform:uppercase}
+.wk button b{display:block;font-family:"IBM Plex Mono",monospace;font-size:1.1rem;font-weight:500}
+.wk button.closed{opacity:.55}
+.wk .dot{display:block;height:4px;border-radius:2px;margin-top:.25rem;background:var(--sage)}
+.wk .dot.none{background:var(--line-2)}
+/* hours editor */
+.dayrow{border-top:1px solid var(--line);padding:.8rem 0;display:grid;grid-template-columns:8rem 1fr;gap:1rem;align-items:start}
+.dayrow:first-of-type{border-top:0}
+.dayrow h3{margin:0;font:600 .95rem "Hanken Grotesk",sans-serif}
+.win{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin-bottom:.4rem}
+.win input[type=time]{width:7.2rem}
+.win input[type=number]{width:4.6rem}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem}
+.sub{color:var(--mute);font-size:.86rem;margin:.2rem 0 1rem}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);padding:1.2rem;max-width:440px;width:92vw}
+dialog::backdrop{background:rgba(16,32,47,.45)}
+@media (max-width:760px){th:nth-child(4),td:nth-child(4),th:nth-child(7),td:nth-child(7){display:none}.dayrow{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header><div class="bar">
-  <div class="brand">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="24" cy="24" r="10"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M9.9 9.9l4.2 4.2M33.9 33.9l4.2 4.2M9.9 38.1l4.2-4.2M33.9 14.1l4.2-4.2"/><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"/></svg>
-    <div><h1>Appointment requests</h1><small>Mojave Medical · staff only</small></div>
+
+<div id="gate" hidden>
+  <form class="login" id="loginForm">
+    <h1>Mojave Medical</h1>
+    <p class="sub">Staff sign-in</p>
+    <label class="lbl" for="lu">Username</label><input id="lu" name="user" autocomplete="username" required>
+    <label class="lbl" for="lp">Password</label><input id="lp" name="pass" type="password" autocomplete="current-password" required>
+    <button class="btn btn-ink" type="submit">Sign in</button>
+    <p class="err" id="loginErr" role="alert"></p>
+  </form>
+</div>
+
+<div id="app" hidden>
+<header>
+  <div class="bar">
+    <div class="brand">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="24" cy="24" r="10"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M9.9 9.9l4.2 4.2M33.9 33.9l4.2 4.2M9.9 38.1l4.2-4.2M33.9 14.1l4.2-4.2"/><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"/></svg>
+      <div><h1>Mojave Medical</h1><small id="whoami">staff only</small></div>
+    </div>
+    <div style="margin-left:auto" class="acts">
+      <button class="btn" id="refresh">Refresh</button>
+      <button class="btn" id="logout">Sign out</button>
+    </div>
   </div>
-  <div style="margin-left:auto" class="acts">
-    <button class="btn" id="refresh">Refresh</button>
-    <a class="btn" id="csv" href="/api/admin/export.csv">Export CSV</a>
-  </div>
-</div></header>
+  <nav class="tabs" id="tabs" role="tablist">
+    <button role="tab" data-tab="requests" aria-selected="true">Requests</button>
+    <button role="tab" data-tab="calendar" aria-selected="false">Calendar</button>
+    <button role="tab" data-tab="hours" aria-selected="false">Hours &amp; availability</button>
+    <button role="tab" data-tab="activity" aria-selected="false">Activity</button>
+  </nav>
+</header>
 
 <main>
-  <div class="tiles" id="tiles"></div>
-  <div class="controls">
-    <input type="search" id="q" placeholder="Search name, phone, reference…" aria-label="Search requests">
-    <select id="status" aria-label="Filter by status"></select>
-    <span class="mono" style="color:var(--mute);font-size:.82rem" id="count"></span>
-  </div>
-  <div class="wrap-t"><table>
-    <thead><tr><th>Ref</th><th>Received</th><th>Patient</th><th>Phone</th><th>Visit</th><th>Requested</th><th>Insurance</th><th>Status</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table></div>
-  <div class="note"><b>Reminder.</b> This page shows patient information. Do not screenshot it into email or chat. Requests are stored on your own server; the notification emails deliberately contain only a reference number unless you have turned detail emails on.</div>
+  <!-- ------------------------------------------------------------ requests -->
+  <section id="tab-requests">
+    <div class="tiles" id="tiles"></div>
+    <div class="controls">
+      <input type="search" id="q" placeholder="Search name, phone, reference…" aria-label="Search requests">
+      <select id="status" aria-label="Filter by status"></select>
+      <span class="mono" style="color:var(--mute);font-size:.82rem" id="count"></span>
+      <a class="btn btn-sm" id="csv" href="/api/admin/export.csv" style="margin-left:auto">Export CSV</a>
+    </div>
+    <div class="wrap-t"><table>
+      <thead><tr><th>Ref</th><th>Received</th><th>Patient</th><th>Phone</th><th>Visit</th><th>Requested</th><th>Insurance</th><th>Status</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table></div>
+    <div class="note"><b>Reminder.</b> This page shows patient information. Do not screenshot it into email or chat. Requests are stored on your own server; the notification emails deliberately contain only a reference number unless you have turned detail emails on.</div>
+  </section>
+
+  <!-- ------------------------------------------------------------ calendar -->
+  <section id="tab-calendar" hidden>
+    <div class="daynav">
+      <button class="btn btn-sm" id="dPrev">‹ Previous</button>
+      <input type="date" id="dDate">
+      <button class="btn btn-sm" id="dNext">Next ›</button>
+      <button class="btn btn-sm" id="dToday">Today</button>
+      <span style="margin-left:auto" class="acts">
+        <button class="btn btn-sm" id="addBusy">Add busy time</button>
+        <button class="btn btn-sm" id="addAppt">Add appointment</button>
+        <button class="btn btn-sm" id="closeDay">Close this day</button>
+      </span>
+    </div>
+    <div class="wk" id="weekStrip"></div>
+    <div class="card"><div id="dayHead"></div><div class="slotlist" id="slots"></div></div>
+    <div class="card"><h2>Blocks and closures on this day</h2><div id="blockList"></div></div>
+  </section>
+
+  <!-- --------------------------------------------------------------- hours -->
+  <section id="tab-hours" hidden>
+    <div class="card">
+      <h2>Weekly hours</h2>
+      <p class="sub">These windows generate every bookable time on the website. A day with a lunch break is two windows. Removing all of a day's windows closes that day.</p>
+      <div id="week"></div>
+      <div class="acts" style="margin-top:1rem"><button class="btn btn-ink" id="saveHours">Save weekly hours</button><span class="mono" id="hoursMsg" style="color:var(--mute);font-size:.82rem"></span></div>
+    </div>
+    <div class="card">
+      <h2>Booking rules</h2>
+      <div class="grid2">
+        <div><label class="lbl" for="sTz">Time zone</label><input id="sTz" style="width:100%"></div>
+        <div><label class="lbl" for="sLead">Notice required (hours)</label><input id="sLead" type="number" min="0" max="720" style="width:100%"></div>
+        <div><label class="lbl" for="sHorizon">Book up to (days ahead)</label><input id="sHorizon" type="number" min="1" max="365" style="width:100%"></div>
+        <div><label class="lbl" for="sSlot">Default slot length (min)</label><input id="sSlot" type="number" min="5" max="240" step="5" style="width:100%"></div>
+      </div>
+      <div class="acts" style="margin-top:1rem"><button class="btn btn-ink" id="saveSettings">Save rules</button></div>
+    </div>
+    <div class="card">
+      <h2>Days off and one-off changes</h2>
+      <p class="sub">A closure hides the whole day from the website. Custom hours replace the weekly windows for that date only.</p>
+      <div class="acts" style="margin-bottom:1rem">
+        <input type="date" id="oDate">
+        <button class="btn btn-sm" id="oClose">Close that day</button>
+        <button class="btn btn-sm" id="oVacation">Close a date range</button>
+      </div>
+      <div id="overrideList"></div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------ activity -->
+  <section id="tab-activity" hidden>
+    <div class="card">
+      <h2>Activity log</h2>
+      <p class="sub">Every sign-in, every change and every export, with a salted hash of the IP address. Kept so you can answer "who changed this, and when".</p>
+      <div class="wrap-t"><table>
+        <thead><tr><th>When</th><th>Who</th><th>Action</th><th>Reference</th><th>Detail</th><th>IP hash</th></tr></thead>
+        <tbody id="auditRows"></tbody>
+      </table></div>
+    </div>
+  </section>
 </main>
+</div>
+
+<dialog id="dlg"><form method="dialog" id="dlgForm"></form></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-const $=s=>document.querySelector(s);
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-let DATA={rows:[],counts:{},statuses:[]}, open=null, timer;
-const LABEL={all:"All",new:"New",contacted:"Contacted",scheduled:"Scheduled",declined:"Declined",spam:"Spam"};
-const fmt=iso=>{const d=new Date(iso);return d.toLocaleString(undefined,{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})};
-const ago=iso=>{const m=(Date.now()-new Date(iso))/6e4;if(m<60)return Math.round(m)+"m ago";if(m<1440)return Math.round(m/60)+"h ago";return Math.round(m/1440)+"d ago"};
+"use strict";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const DOW = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const LABEL = { all: "All", new: "New", contacted: "Contacted", scheduled: "Scheduled", declined: "Declined", spam: "Spam" };
+let CSRF = null, toastTimer;
 
-function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(timer);timer=setTimeout(()=>e.classList.remove("on"),2400)}
+function toast(t) { const e = $("#toast"); e.textContent = t; e.classList.add("on"); clearTimeout(toastTimer); toastTimer = setTimeout(() => e.classList.remove("on"), 2800); }
 
-async function load(){
-  const p=new URLSearchParams({status:$("#status").value||"all",q:$("#q").value.trim()});
-  const r=await fetch("/api/admin/appointments?"+p,{headers:{accept:"application/json"}});
-  if(!r.ok){toast("Could not load ("+r.status+")");return}
-  DATA=await r.json(); render();
-  $("#csv").href="/api/admin/export.csv?status="+encodeURIComponent($("#status").value||"all");
+/* Every call goes through here so the CSRF token is never forgotten and an expired
+   session always lands on the sign-in card instead of failing silently. */
+async function api(path, opts = {}) {
+  const init = { headers: { accept: "application/json", ...(opts.headers || {}) }, method: opts.method || "GET" };
+  if (opts.body !== undefined) {
+    init.method = "POST";
+    init.headers["content-type"] = "application/json";
+    if (CSRF) init.headers["x-csrf-token"] = CSRF;
+    init.body = JSON.stringify(opts.body);
+  }
+  const r = await fetch(path, init);
+  if (r.status === 401) { showGate(); throw new Error("Sign in required"); }
+  let data = null;
+  try { data = await r.json(); } catch (e) { data = {}; }
+  if (!r.ok) throw new Error(data.error || ("HTTP " + r.status));
+  return data;
 }
-function renderTiles(){
-  const total=Object.values(DATA.counts).reduce((a,b)=>a+b,0);
-  const order=["all",...DATA.statuses];
-  $("#tiles").innerHTML=order.map(s=>{
-    const n=s==="all"?total:(DATA.counts[s]||0);
-    const on=($("#status").value||"all")===s;
-    return `<button class="tile${s==="new"&&n?" hot":""}" data-s="${s}" aria-pressed="${on}"><b>${n}</b><span>${LABEL[s]||s}</span></button>`;
+
+/* ------------------------------------------------------------------- gate */
+function showGate() { $("#gate").hidden = false; $("#app").hidden = true; CSRF = null; }
+function showApp(user) {
+  $("#gate").hidden = true; $("#app").hidden = false;
+  $("#whoami").textContent = "signed in as " + user;
+}
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  $("#loginErr").textContent = "";
+  try {
+    const d = await api("/api/admin/login", { body: { user: $("#lu").value, pass: $("#lp").value } });
+    CSRF = d.csrf; $("#lp").value = "";
+    showApp(d.user);
+    boot();
+  } catch (err) { $("#loginErr").textContent = err.message; }
+});
+$("#logout").addEventListener("click", async () => {
+  try { await api("/api/admin/logout", { body: {} }); } catch (e) {}
+  showGate();
+});
+
+/* --------------------------------------------------------------- requests */
+let DATA = { rows: [], counts: {}, statuses: [] }, openRef = null;
+const fmtWhen = iso => new Date(iso).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+const ago = iso => { const m = (Date.now() - new Date(iso)) / 6e4; if (m < 60) return Math.round(m) + "m ago"; if (m < 1440) return Math.round(m / 60) + "h ago"; return Math.round(m / 1440) + "d ago"; };
+const telDigits = p => String(p ?? "").replace(/\D/g, "");
+
+async function loadRequests() {
+  const p = new URLSearchParams({ status: $("#status").value || "all", q: $("#q").value.trim() });
+  DATA = await api("/api/admin/appointments?" + p);
+  renderRequests();
+  $("#csv").href = "/api/admin/export.csv?status=" + encodeURIComponent($("#status").value || "all");
+}
+function renderTiles() {
+  const total = Object.values(DATA.counts).reduce((a, b) => a + b, 0);
+  $("#tiles").innerHTML = ["all", ...DATA.statuses].map(s => {
+    const n = s === "all" ? total : (DATA.counts[s] || 0);
+    const on = ($("#status").value || "all") === s;
+    return `<button class="tile${s === "new" && n ? " hot" : ""}" data-s="${s}" aria-pressed="${on}"><b>${n}</b><span>${LABEL[s] || s}</span></button>`;
   }).join("");
 }
-function render(){
+function renderRequests() {
   renderTiles();
-  $("#count").textContent=DATA.rows.length+" shown";
-  if(!DATA.rows.length){$("#rows").innerHTML='<tr><td colspan="8"><div class="empty">No requests match this filter.</div></td></tr>';return}
-  $("#rows").innerHTML=DATA.rows.map(r=>{
-    const when=r.requested_date?`${r.requested_date}${r.requested_time?" · "+r.requested_time:""}`:"—";
-    const head=`<tr class="row ${r.status}" data-ref="${esc(r.ref)}">
+  $("#count").textContent = DATA.rows.length + " shown";
+  if (!DATA.rows.length) { $("#rows").innerHTML = '<tr><td colspan="8"><div class="empty">No requests match this filter.</div></td></tr>'; return; }
+  $("#rows").innerHTML = DATA.rows.map(r => {
+    const when = r.requested_date ? `${r.requested_date}${r.requested_time ? " · " + r.requested_time : ""}` : "—";
+    const head = `<tr class="row ${esc(r.status)}" data-ref="${esc(r.ref)}">
       <td class="mono">${esc(r.ref)}</td>
-      <td><span title="${esc(r.created_at)}">${esc(fmt(r.created_at))}</span><br><span style="color:var(--mute);font-size:.78rem">${esc(ago(r.created_at))}</span></td>
-      <td><b>${esc(r.last_name)}, ${esc(r.first_name)}</b>${r.patient_status==="est"?'<br><span style="color:var(--mute);font-size:.78rem">established</span>':""}</td>
-      <td class="mono"><a href="tel:${esc(String(r.phone).replace(/\\D/g,""))}" onclick="event.stopPropagation()">${esc(r.phone)}</a></td>
-      <td>${esc(r.visit_label||r.visit_type)}</td>
+      <td><span title="${esc(r.created_at)}">${esc(fmtWhen(r.created_at))}</span><br><span style="color:var(--mute);font-size:.78rem">${esc(ago(r.created_at))}</span></td>
+      <td><b>${esc(r.last_name)}, ${esc(r.first_name)}</b>${r.patient_status === "est" ? '<br><span style="color:var(--mute);font-size:.78rem">established</span>' : ""}</td>
+      <td class="mono"><a href="tel:${esc(telDigits(r.phone))}" onclick="event.stopPropagation()">${esc(r.phone)}</a></td>
+      <td>${esc(r.visit_label || r.visit_type)}</td>
       <td class="mono">${esc(when)}</td>
-      <td>${esc(r.insurance||"—")}</td>
-      <td><span class="pill s-${esc(r.status)}">${esc(LABEL[r.status]||r.status)}</span></td></tr>`;
-    if(open!==r.ref) return head;
-    return head+`<tr class="detail"><td colspan="8">
+      <td>${esc(r.insurance || "—")}</td>
+      <td><span class="pill s-${esc(r.status)}">${esc(LABEL[r.status] || r.status)}</span></td></tr>`;
+    if (openRef !== r.ref) return head;
+    return head + `<tr class="detail"><td colspan="8">
       <div class="dgrid">
-        <div><span>Date of birth</span><b class="mono">${esc(r.dob||"—")}</b></div>
-        <div><span>Email</span><b>${r.email?`<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>`:"—"}</b></div>
-        <div><span>Referred by</span><b>${esc(r.referred_by||"—")}</b></div>
-        <div><span>Language</span><b>${r.lang==="es"?"Spanish":"English"}</b></div>
-        <div><span>Duration</span><b>${esc(r.duration_min||"—")} min</b></div>
-        <div style="grid-column:1/-1"><span>Reason given</span><b>${esc(r.reason||"—")}</b></div>
+        <div><span>Date of birth</span><b class="mono">${esc(r.dob || "—")}</b></div>
+        <div><span>Email</span><b>${r.email ? `<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : "—"}</b></div>
+        <div><span>Referred by</span><b>${esc(r.referred_by || "—")}</b></div>
+        <div><span>Language</span><b>${r.lang === "es" ? "Spanish" : "English"}</b></div>
+        <div><span>Length</span><b>${esc(r.duration_min || "—")} min</b></div>
+        <div><span>Came from</span><b>${esc(r.source || "—")}</b></div>
+        <div style="grid-column:1/-1"><span>Reason given</span><b>${esc(r.reason || "—")}</b></div>
+      </div>
+      <div class="acts" style="margin-bottom:.7rem">
+        ${DATA.statuses.map(s => `<button class="btn btn-sm${s === r.status ? " btn-ink" : ""}" data-set="${s}" data-ref="${esc(r.ref)}">${LABEL[s] || s}</button>`).join("")}
+        <a class="btn btn-sm" href="tel:${esc(telDigits(r.phone))}">Call ${esc(r.phone)}</a>
       </div>
       <div class="acts">
-        ${DATA.statuses.map(s=>`<button class="btn${s===r.status?" btn-ink":""}" data-set="${s}" data-ref="${esc(r.ref)}">${LABEL[s]||s}</button>`).join("")}
-        <a class="btn" href="tel:${esc(String(r.phone).replace(/\\D/g,""))}">Call ${esc(r.phone)}</a>
+        <span class="lbl" style="letter-spacing:.08em">Move to</span>
+        <input type="date" data-rdate="${esc(r.ref)}" value="${esc(r.requested_date || "")}">
+        <input type="time" step="300" data-rtime="${esc(r.ref)}" value="${esc(r.requested_time ? padTime(r.requested_time) : "")}">
+        <button class="btn btn-sm" data-move="${esc(r.ref)}">Reschedule</button>
       </div>
-      <textarea data-notes="${esc(r.ref)}" placeholder="Staff notes (saved when you click away)">${esc(r.staff_notes||"")}</textarea>
+      <textarea data-notes="${esc(r.ref)}" placeholder="Staff notes (saved when you click away)">${esc(r.staff_notes || "")}</textarea>
     </td></tr>`;
   }).join("");
 }
-async function save(ref,patch){
-  const r=await fetch("/api/admin/appointments/"+encodeURIComponent(ref),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(patch)});
-  if(!r.ok){toast("Save failed");return}
-  toast("Saved "+ref); await load();
+const padTime = t => { const m = /^(\d{1,2}):(\d{2})$/.exec(String(t)); return m ? String(m[1]).padStart(2, "0") + ":" + m[2] : ""; };
+
+async function saveRequest(ref, patch) {
+  try { await api("/api/admin/appointments/" + encodeURIComponent(ref), { body: patch }); toast("Saved " + ref); await loadRequests(); }
+  catch (e) { toast(e.message); }
 }
-document.addEventListener("click",e=>{
-  const tile=e.target.closest(".tile");
-  if(tile){$("#status").value=tile.dataset.s;load();return}
-  const set=e.target.closest("[data-set]");
-  if(set){save(set.dataset.ref,{status:set.dataset.set});return}
-  const row=e.target.closest("tr.row");
-  if(row){open=open===row.dataset.ref?null:row.dataset.ref;render();return}
-  if(e.target.id==="refresh"){load();return}
+
+/* --------------------------------------------------------------- calendar */
+let DAY = null, DAYDATE = null;
+const todayISO = () => new Date().toISOString().slice(0, 10);
+const shiftDate = (iso, n) => { const d = new Date(iso + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const prettyDate = iso => new Date(iso + "T12:00:00Z").toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+const fmtMin = t => { const m = /^(\d{1,2}):(\d{2})$/.exec(String(t)); if (!m) return t; let h = +m[1]; const ap = h >= 12 ? "PM" : "AM"; h = h % 12 === 0 ? 12 : h % 12; return h + ":" + m[2] + " " + ap; };
+
+async function loadDay(date) {
+  DAYDATE = date || DAYDATE || todayISO();
+  $("#dDate").value = DAYDATE;
+  DAY = await api("/api/admin/day?date=" + encodeURIComponent(DAYDATE));
+  renderDay();
+  renderWeekStrip();
+}
+function renderDay() {
+  const d = DAY;
+  $("#dayHead").innerHTML = `<h2>${esc(prettyDate(d.date))}</h2>` +
+    `<p class="sub">${d.closed ? "Closed — the website shows no times for this day."
+      : `${d.slots.filter(s => s.open).length} of ${d.slots.length} slots open · ${esc(d.settings.timezone)}`}` +
+    (d.override ? ` · <b>custom${d.override.closed ? " (closed)" : " hours"}</b> <button class="btn btn-sm" id="clearOverride">Restore weekly hours</button>` : "") + "</p>";
+
+  if (!d.slots.length) {
+    $("#slots").innerHTML = '<div class="empty">No working hours on this day.</div>';
+  } else {
+    $("#slots").innerHTML = d.slots.map(s => {
+      const hit = s.hits[0];
+      let cls = "free", what = "<b>Open</b>", act = `<button class="btn btn-sm" data-block-at="${s.t}">Block</button> <button class="btn btn-sm" data-appt-at="${s.t}">Book</button>`;
+      if (hit) {
+        if (hit.kind === "request") {
+          cls = hit.status === "scheduled" ? "appt" : "req";
+          what = `<b>${esc(hit.title)}</b><small>${esc(LABEL[hit.status] || hit.status)} · ${esc(hit.ref)}</small>`;
+          act = `<button class="btn btn-sm" data-open-ref="${esc(hit.ref)}">Open</button>`;
+        } else {
+          cls = hit.kind === "appointment" ? "appt" : "busy";
+          what = `<b>${esc(hit.title || (hit.kind === "appointment" ? "Appointment" : "Busy"))}</b><small>${hit.all_day ? "all day" : "blocked"}</small>`;
+          act = `<button class="btn btn-sm btn-danger" data-del-block="${hit.id}">Free up</button>`;
+        }
+      } else if (!s.open) {
+        what = `<b style="color:var(--mute)">Unavailable</b><small>${esc(s.reason === "lead" ? "inside the notice window" : s.reason || "")}</small>`;
+      }
+      return `<div class="slot ${cls}"><span class="when">${esc(fmtMin(s.t))}</span><span class="what">${what}</span><span class="acts">${act}</span></div>`;
+    }).join("");
+  }
+
+  const bl = d.blocks;
+  $("#blockList").innerHTML = bl.length ? bl.map(b =>
+    `<div class="slot busy wide"><span class="when">${b.all_day ? "All day" : esc(fmtMin(minToHhmm(b.start_min)) + "–" + fmtMin(minToHhmm(b.end_min)))}</span>
+     <span class="what"><b>${esc(b.title || b.kind)}</b><small>${esc(b.start_date)}${b.end_date !== b.start_date ? " → " + esc(b.end_date) : ""}${b.note ? " · " + esc(b.note) : ""}${b.patient_name ? " · " + esc(b.patient_name) : ""}</small></span>
+     <span class="acts"><button class="btn btn-sm btn-danger" data-del-block="${b.id}">Delete</button></span></div>`).join("")
+    : '<div class="empty">Nothing blocked on this day.</div>';
+}
+const minToHhmm = m => String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0");
+
+async function renderWeekStrip() {
+  const start = shiftDate(DAYDATE, -3);
+  let av = null;
+  try { av = await api(`/api/admin/agenda?from=${start}&to=${shiftDate(start, 6)}`); } catch (e) { av = { appointments: [], blocks: [] }; }
+  const counts = {};
+  av.appointments.forEach(a => { counts[a.requested_date] = (counts[a.requested_date] || 0) + 1; });
+  let html = "";
+  for (let i = 0; i < 7; i++) {
+    const iso = shiftDate(start, i);
+    const dt = new Date(iso + "T12:00:00Z");
+    const n = counts[iso] || 0;
+    html += `<button data-goday="${iso}" aria-pressed="${iso === DAYDATE}">
+      <small>${DOW[dt.getUTCDay()].slice(0, 3)}</small><b>${dt.getUTCDate()}</b>
+      <span class="dot${n ? "" : " none"}"></span><small>${n || "—"}</small></button>`;
+  }
+  $("#weekStrip").innerHTML = html;
+}
+
+/* ------------------------------------------------------------------ hours */
+let SCHED = null;
+async function loadSchedule() {
+  SCHED = await api("/api/admin/schedule");
+  renderWeekEditor();
+  $("#sTz").value = SCHED.settings.timezone;
+  $("#sLead").value = SCHED.settings.lead_hours;
+  $("#sHorizon").value = SCHED.settings.horizon_days;
+  $("#sSlot").value = SCHED.settings.slot_min;
+  renderOverrides();
+}
+function winRow(w) {
+  return `<div class="win">
+    <input type="time" step="300" data-w="start" value="${minToHhmm(w.start_min)}" aria-label="Opens">
+    <span>to</span>
+    <input type="time" step="300" data-w="end" value="${minToHhmm(w.end_min)}" aria-label="Closes">
+    <span class="lbl" style="letter-spacing:.06em">every</span><input type="number" data-w="slot" min="5" max="240" step="5" value="${w.slot_min}" aria-label="Slot minutes"><span class="lbl" style="letter-spacing:.06em">min ·</span>
+    <input type="number" data-w="cap" min="1" max="20" value="${w.capacity}" aria-label="Patients at once"><span class="lbl" style="letter-spacing:.06em">at once</span>
+    <button type="button" class="btn btn-sm btn-danger" data-delwin>Remove</button>
+  </div>`;
+}
+function renderWeekEditor() {
+  const by = {};
+  SCHED.rules.forEach(r => { (by[r.dow] ||= []).push(r); });
+  let html = "";
+  for (let d = 1; d <= 7; d++) {
+    const dow = d % 7;                       // show Monday first, Sunday last
+    const ws = (by[dow] || []).sort((a, b) => a.start_min - b.start_min);
+    html += `<div class="dayrow" data-dow="${dow}">
+      <h3>${DOW[dow]}${ws.length ? "" : ' <small style="color:var(--mute);font-weight:400">closed</small>'}</h3>
+      <div><div class="wins">${ws.map(winRow).join("")}</div>
+      <button type="button" class="btn btn-sm" data-addwin="${dow}">Add hours</button></div></div>`;
+  }
+  $("#week").innerHTML = html;
+}
+function collectRules() {
+  const out = [];
+  document.querySelectorAll("#week .dayrow").forEach(row => {
+    const dow = Number(row.dataset.dow);
+    row.querySelectorAll(".win").forEach(w => {
+      const g = k => w.querySelector(`[data-w="${k}"]`).value;
+      const toMin = v => { const m = /^(\d{1,2}):(\d{2})$/.exec(v || ""); return m ? +m[1] * 60 + +m[2] : null; };
+      const start_min = toMin(g("start")), end_min = toMin(g("end"));
+      if (start_min == null || end_min == null || end_min <= start_min) return;
+      out.push({ dow, start_min, end_min, slot_min: Number(g("slot")) || 30, capacity: Number(g("cap")) || 1 });
+    });
+  });
+  return out;
+}
+function renderOverrides() {
+  const list = SCHED.overrides || [];
+  const blocks = (SCHED.blocks || []).filter(b => b.all_day);
+  const rows = [
+    ...list.map(o => ({ key: "o:" + o.date, when: o.date, what: o.closed ? "Closed all day" : "Custom hours", note: o.note || "" })),
+    ...blocks.map(b => ({ key: "b:" + b.id, when: b.start_date + (b.end_date !== b.start_date ? " → " + b.end_date : ""), what: b.title || "Closed", note: b.note || "", id: b.id })),
+  ];
+  $("#overrideList").innerHTML = rows.length ? rows.map(r =>
+    `<div class="slot busy wide"><span class="when">${esc(r.when)}</span><span class="what"><b>${esc(r.what)}</b>${r.note ? `<small>${esc(r.note)}</small>` : ""}</span>
+     <span class="acts">${r.id ? `<button class="btn btn-sm btn-danger" data-del-block="${r.id}">Delete</button>`
+       : `<button class="btn btn-sm btn-danger" data-del-override="${esc(r.when)}">Delete</button>`}</span></div>`).join("")
+    : '<div class="empty">No upcoming closures.</div>';
+}
+
+/* ---------------------------------------------------------------- dialogs */
+function dialog(title, fields, onSubmit) {
+  const f = $("#dlgForm");
+  f.innerHTML = `<h2>${esc(title)}</h2>` + fields.map(x => {
+    if (x.type === "checkbox") return `<label style="display:flex;gap:.5rem;align-items:center;margin:.7rem 0"><input type="checkbox" name="${x.name}" ${x.value ? "checked" : ""}> ${esc(x.label)}</label>`;
+    return `<label class="lbl" for="d-${x.name}" style="margin-top:.7rem">${esc(x.label)}</label>` +
+      (x.type === "select"
+        ? `<select id="d-${x.name}" name="${x.name}" style="width:100%">${x.options.map(o => `<option value="${esc(o.value)}"${o.value === x.value ? " selected" : ""}>${esc(o.label)}</option>`).join("")}</select>`
+        : `<input id="d-${x.name}" name="${x.name}" type="${x.type || "text"}" value="${esc(x.value ?? "")}" ${x.attrs || ""} style="width:100%">`);
+  }).join("") +
+    `<div class="acts" style="margin-top:1.1rem;justify-content:flex-end"><button type="button" class="btn" data-cancel>Cancel</button><button type="submit" class="btn btn-ink">Save</button></div>`;
+  f.onsubmit = async e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(f).entries());
+    f.querySelectorAll('input[type=checkbox]').forEach(c => { data[c.name] = c.checked; });
+    try { await onSubmit(data); $("#dlg").close(); }
+    catch (err) { toast(err.message); }
+  };
+  f.querySelector("[data-cancel]").onclick = () => $("#dlg").close();
+  $("#dlg").showModal();
+}
+
+/* ------------------------------------------------------------------ wiring */
+document.addEventListener("click", async e => {
+  const tab = e.target.closest("nav.tabs button");
+  if (tab) { selectTab(tab.dataset.tab); return; }
+
+  const tile = e.target.closest(".tile");
+  if (tile) { $("#status").value = tile.dataset.s; loadRequests().catch(err => toast(err.message)); return; }
+
+  const set = e.target.closest("[data-set]");
+  if (set) { saveRequest(set.dataset.ref, { status: set.dataset.set }); return; }
+
+  const move = e.target.closest("[data-move]");
+  if (move) {
+    const ref = move.dataset.move;
+    const date = document.querySelector(`[data-rdate="${CSS.escape(ref)}"]`).value;
+    const time = document.querySelector(`[data-rtime="${CSS.escape(ref)}"]`).value;
+    try { await api("/api/admin/appointments/" + encodeURIComponent(ref), { body: { requested_date: date, requested_time: time } }); toast("Moved " + ref); await loadRequests(); }
+    catch (err) {
+      if (/taken/i.test(err.message) && confirm(err.message + "\n\nDouble-book anyway?")) {
+        await api("/api/admin/appointments/" + encodeURIComponent(ref), { body: { requested_date: date, requested_time: time, force: true } });
+        toast("Moved " + ref); await loadRequests();
+      } else toast(err.message);
+    }
+    return;
+  }
+
+  const openRow = e.target.closest("tr.row");
+  if (openRow) { openRef = openRef === openRow.dataset.ref ? null : openRow.dataset.ref; renderRequests(); return; }
+
+  if (e.target.id === "refresh") { boot(); return; }
+
+  /* ---- calendar ---- */
+  const goday = e.target.closest("[data-goday]");
+  if (goday) { loadDay(goday.dataset.goday).catch(err => toast(err.message)); return; }
+  if (e.target.id === "dPrev") { loadDay(shiftDate(DAYDATE, -1)).catch(err => toast(err.message)); return; }
+  if (e.target.id === "dNext") { loadDay(shiftDate(DAYDATE, 1)).catch(err => toast(err.message)); return; }
+  if (e.target.id === "dToday") { loadDay(todayISO()).catch(err => toast(err.message)); return; }
+
+  const openRefBtn = e.target.closest("[data-open-ref]");
+  if (openRefBtn) { openRef = openRefBtn.dataset.openRef; selectTab("requests"); $("#status").value = "all"; $("#q").value = openRef; await loadRequests(); return; }
+
+  const delBlock = e.target.closest("[data-del-block]");
+  if (delBlock) {
+    if (!confirm("Remove this block? The time becomes bookable again.")) return;
+    try { await api("/api/admin/blocks", { body: { op: "delete", id: Number(delBlock.dataset.delBlock) } }); toast("Removed"); await refreshSchedule(); }
+    catch (err) { toast(err.message); }
+    return;
+  }
+  const delOv = e.target.closest("[data-del-override]");
+  if (delOv) {
+    try { await api("/api/admin/schedule/override", { body: { op: "delete", date: delOv.dataset.delOverride } }); toast("Restored weekly hours"); await refreshSchedule(); }
+    catch (err) { toast(err.message); }
+    return;
+  }
+  if (e.target.id === "clearOverride") {
+    try { await api("/api/admin/schedule/override", { body: { op: "delete", date: DAYDATE } }); toast("Restored weekly hours"); await refreshSchedule(); }
+    catch (err) { toast(err.message); }
+    return;
+  }
+
+  const blockAt = e.target.closest("[data-block-at]");
+  if (blockAt) { busyDialog(DAYDATE, blockAt.dataset.blockAt); return; }
+  if (e.target.id === "addBusy") { busyDialog(DAYDATE, ""); return; }
+
+  const apptAt = e.target.closest("[data-appt-at]");
+  if (apptAt) { apptDialog(DAYDATE, apptAt.dataset.apptAt); return; }
+  if (e.target.id === "addAppt") { apptDialog(DAYDATE, ""); return; }
+
+  if (e.target.id === "closeDay") {
+    if (!confirm("Close " + prettyDate(DAYDATE) + "? The website will show no times that day.")) return;
+    try { await api("/api/admin/schedule/override", { body: { date: DAYDATE, closed: true, note: "Closed" } }); toast("Day closed"); await refreshSchedule(); }
+    catch (err) { toast(err.message); }
+    return;
+  }
+
+  /* ---- hours ---- */
+  const addwin = e.target.closest("[data-addwin]");
+  if (addwin) {
+    const row = addwin.closest(".dayrow");
+    row.querySelector(".wins").insertAdjacentHTML("beforeend", winRow({ start_min: 9 * 60, end_min: 17 * 60, slot_min: Number($("#sSlot").value) || 30, capacity: 1 }));
+    return;
+  }
+  const delwin = e.target.closest("[data-delwin]");
+  if (delwin) { delwin.closest(".win").remove(); return; }
+
+  if (e.target.id === "saveHours") {
+    try { await api("/api/admin/schedule/rules", { body: { rules: collectRules() } }); toast("Weekly hours saved"); await refreshSchedule(); }
+    catch (err) { toast(err.message); }
+    return;
+  }
+  if (e.target.id === "saveSettings") {
+    try {
+      await api("/api/admin/schedule/settings", { body: { timezone: $("#sTz").value, lead_hours: $("#sLead").value, horizon_days: $("#sHorizon").value, slot_min: $("#sSlot").value } });
+      toast("Booking rules saved"); await refreshSchedule();
+    } catch (err) { toast(err.message); }
+    return;
+  }
+  if (e.target.id === "oClose") {
+    const date = $("#oDate").value;
+    if (!date) { toast("Pick a date first"); return; }
+    try { await api("/api/admin/schedule/override", { body: { date, closed: true, note: "Closed" } }); toast("Closed " + date); await refreshSchedule(); }
+    catch (err) { toast(err.message); }
+    return;
+  }
+  if (e.target.id === "oVacation") {
+    dialog("Close a range of days", [
+      { name: "start_date", label: "First day", type: "date", value: $("#oDate").value || todayISO() },
+      { name: "end_date", label: "Last day (inclusive)", type: "date", value: $("#oDate").value || todayISO() },
+      { name: "title", label: "Reason shown to staff", value: "Away" },
+    ], async d => {
+      await api("/api/admin/blocks", { body: { kind: "busy", all_day: true, start_date: d.start_date, end_date: d.end_date, title: d.title } });
+      toast("Closed " + d.start_date + " → " + d.end_date);
+      await refreshSchedule();
+    });
+    return;
+  }
 });
-document.addEventListener("focusout",e=>{
-  const ta=e.target.closest("[data-notes]");
-  if(ta) save(ta.dataset.notes,{staff_notes:ta.value});
+
+function busyDialog(date, at) {
+  dialog("Block time", [
+    { name: "start_date", label: "Date", type: "date", value: date },
+    { name: "start_time", label: "From", type: "time", value: at || "12:00", attrs: 'step="300"' },
+    { name: "end_time", label: "To", type: "time", value: at ? addMinutes(at, 30) : "13:00", attrs: 'step="300"' },
+    { name: "title", label: "Reason", value: "Busy" },
+    { name: "note", label: "Note (optional)", value: "" },
+  ], async d => {
+    await api("/api/admin/blocks", { body: { kind: "busy", start_date: d.start_date, end_date: d.start_date, start_time: d.start_time, end_time: d.end_time, title: d.title, note: d.note } });
+    toast("Time blocked");
+    await refreshSchedule();
+  });
+}
+function apptDialog(date, at) {
+  const types = (SCHED && SCHED.visit_types) || [{ id: "follow", label: "Follow-up visit" }];
+  dialog("Book an appointment", [
+    { name: "first_name", label: "First name", value: "" },
+    { name: "last_name", label: "Last name", value: "" },
+    { name: "phone", label: "Phone", type: "tel", value: "" },
+    { name: "dob", label: "Date of birth", type: "date", value: "" },
+    { name: "visit_type", label: "Visit type", type: "select", value: "follow", options: types.map(t => ({ value: t.id, label: t.label })) },
+    { name: "requested_date", label: "Date", type: "date", value: date },
+    { name: "requested_time", label: "Time", type: "time", value: at || "09:00", attrs: 'step="300"' },
+    { name: "reason", label: "Reason (optional)", value: "" },
+  ], async d => {
+    try {
+      await api("/api/admin/appointments", { body: { ...d, patient_status: "est", source: "staff" } });
+    } catch (err) {
+      if (/taken/i.test(err.message) && confirm(err.message + "\n\nDouble-book anyway?")) {
+        await api("/api/admin/appointments", { body: { ...d, patient_status: "est", source: "staff", force: true } });
+      } else throw err;
+    }
+    toast("Appointment booked");
+    await refreshSchedule();
+    await loadRequests();
+  });
+}
+const addMinutes = (hhmm, n) => {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(hhmm); if (!m) return hhmm;
+  const v = (+m[1] * 60 + +m[2] + n) % 1440;
+  return String(Math.floor(v / 60)).padStart(2, "0") + ":" + String(v % 60).padStart(2, "0");
+};
+
+document.addEventListener("focusout", e => {
+  const ta = e.target.closest("[data-notes]");
+  if (ta) saveRequest(ta.dataset.notes, { staff_notes: ta.value });
 });
-$("#q").addEventListener("input",()=>{clearTimeout(window._d);window._d=setTimeout(load,280)});
-$("#status").addEventListener("change",load);
-$("#status").innerHTML=["all","new","contacted","scheduled","declined","spam"].map(s=>`<option value="${s}">${LABEL[s]}</option>`).join("");
-load(); setInterval(load,60000);
+$("#q").addEventListener("input", () => { clearTimeout(window._d); window._d = setTimeout(() => loadRequests().catch(e => toast(e.message)), 280); });
+$("#status").addEventListener("change", () => loadRequests().catch(e => toast(e.message)));
+$("#dDate").addEventListener("change", () => loadDay($("#dDate").value).catch(e => toast(e.message)));
+$("#status").innerHTML = ["all", "new", "contacted", "scheduled", "declined", "spam"].map(s => `<option value="${s}">${LABEL[s]}</option>`).join("");
+
+const TABS = ["requests", "calendar", "hours", "activity"];
+let TAB = TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "requests";
+function selectTab(name) {
+  TAB = name;
+  if (location.hash.slice(1) !== name) history.replaceState(null, "", "#" + name);
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+  TABS.forEach(t => { $("#tab-" + t).hidden = t !== name; });
+  if (name === "calendar") loadDay(DAYDATE || todayISO()).catch(e => toast(e.message));
+  if (name === "hours") loadSchedule().catch(e => toast(e.message));
+  if (name === "activity") loadAudit().catch(e => toast(e.message));
+}
+async function loadAudit() {
+  const d = await api("/api/admin/audit?limit=300");
+  $("#auditRows").innerHTML = d.rows.length ? d.rows.map(r => `<tr>
+    <td class="mono" style="white-space:nowrap">${esc(fmtWhen(r.at))}</td><td>${esc(r.actor)}</td>
+    <td><span class="pill ${r.action.includes("fail") || r.action.includes("blocked") || r.action.includes("locked") ? "s-declined" : r.action === "login" ? "s-scheduled" : "s-contacted"}">${esc(r.action)}</span></td>
+    <td class="mono">${esc(r.appt_ref || "—")}</td><td>${esc(r.detail || "—")}</td><td class="mono" style="color:var(--mute)">${esc(r.ip_hash || "—")}</td></tr>`).join("")
+    : '<tr><td colspan="6"><div class="empty">Nothing logged yet.</div></td></tr>';
+}
+async function refreshSchedule() {
+  if (TAB === "calendar") await loadDay(DAYDATE);
+  if (TAB === "hours") await loadSchedule();
+  if (TAB === "calendar" || TAB === "hours") { try { SCHED = await api("/api/admin/schedule"); } catch (e) {} }
+}
+
+async function boot() {
+  try {
+    await loadRequests();
+    if (!SCHED) SCHED = await api("/api/admin/schedule");
+    selectTab(TAB);
+  } catch (e) { if (!/Sign in/.test(e.message)) toast(e.message); }
+}
+window.addEventListener("hashchange", () => { const t = location.hash.slice(1); if (TABS.includes(t) && t !== TAB) selectTab(t); });
+
+(async function start() {
+  try {
+    const s = await api("/api/admin/session");
+    CSRF = s.csrf;
+    showApp(s.user);
+    boot();
+    setInterval(() => { if (TAB === "requests" && !$("#app").hidden) loadRequests().catch(() => {}); }, 60000);
+  } catch (e) { showGate(); }
+})();
 </script>
 </body>
 </html>

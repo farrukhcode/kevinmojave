@@ -24,7 +24,7 @@ emit_body() {
 
 # 2. standalone + 3. server public copy
 {
-  printf '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="theme-color" content="#10202F">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">\n<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">\n<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="canonical" href="https://mojavemedical.org/">\n'
+  printf '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="theme-color" content="#10202F">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">\n<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">\n<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="canonical" href="https://mojavemedclinic.com/">\n'
   cat src/part1-head.html
   printf '</head>\n<body>\n'
   emit_body
@@ -55,14 +55,14 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
-Sitemap: https://mojavemedical.org/sitemap.xml
+Sitemap: https://mojavemedclinic.com/sitemap.xml
 TXT
 
 TODAY=$(date +%Y-%m-%d)
 {
   printf '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
   for p in "" "about" "services" "patients" "reviews" "contact" "book"; do
-    printf '  <url><loc>https://mojavemedical.org/#/%s</loc><lastmod>%s</lastmod></url>\n' "$p" "$TODAY"
+    printf '  <url><loc>https://mojavemedclinic.com/#/%s</loc><lastmod>%s</lastmod></url>\n' "$p" "$TODAY"
   done
   printf '</urlset>\n'
 } > server/public/sitemap.xml

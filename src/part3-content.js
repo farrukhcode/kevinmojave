@@ -5,7 +5,7 @@
    PubMed, and the practice's own Yelp listing (Sept 2026). Items marked
    [confirm] in PLAN.md should be verified with Dr. Ganesh before launch.
    ===================================================================== */
-const PHONE = "(760) 688-0084", PHONE_TEL = "tel:+17606880084", FAX = "(760) 688-0470", EMAIL = "mojavemedicalclinic@gmail.com";
+const PHONE = "(760) 688-0084", PHONE_TEL = "tel:+17606880084", FAX = "(760) 688-0470", EMAIL = "kevin.ganesh@mojavemedclinic.com";
 // Address per the practice's own Google Business Profile ("Kevin Ganesh MD - Mojave Medical",
 // place /g/11y3n827gf, pin 34.5424965,-117.2710243). The CMS NPI record still shows the older
 // 15982 Tuscola Rd Ste B address and should be updated by the practice. See PLAN.md.
@@ -327,6 +327,17 @@ const C = {
     doneP: { en: "We'll confirm by phone or text within one business day. If you don't hear from us, call the office.", es: "Confirmaremos por teléfono o mensaje de texto en un día hábil. Si no recibe noticias, llame al consultorio." },
     refNo: { en: "Reference", es: "Referencia" },
     another: { en: "Request another", es: "Solicitar otra" },
+    loading: { en: "Loading available times…", es: "Cargando horarios disponibles…" },
+    avErrH: { en: "The online calendar is unavailable", es: "El calendario en línea no está disponible" },
+    avErrP: { en: "We can't reach the booking system right now, so we can't show real openings. Please call the office and we'll book you over the phone.", es: "No podemos conectar con el sistema de reservas en este momento, así que no podemos mostrar horarios reales. Llame al consultorio y le daremos una cita por teléfono." },
+    retry: { en: "Try again", es: "Reintentar" },
+    noneOpen: { en: "There are no online openings in the next few weeks. Please call the office.", es: "No hay horarios en línea en las próximas semanas. Llame al consultorio." },
+    closedDay: { en: "The office is closed that day.", es: "El consultorio está cerrado ese día." },
+    takenH: { en: "That time was just taken", es: "Esa hora acaba de ocuparse" },
+    takenP: { en: "Someone booked it while you were filling in your details, so nothing was sent. The calendar below is up to date; please pick another time.", es: "Alguien la reservó mientras completaba sus datos, así que no se envió nada. El calendario de abajo está actualizado; elija otra hora." },
+    failH: { en: "Your request was not sent", es: "Su solicitud no se envió" },
+    failP: { en: "We could not reach the office system, so no appointment was requested. Please call us and we'll take your appointment over the phone.", es: "No pudimos conectar con el sistema del consultorio, así que no se solicitó ninguna cita. Llámenos y tomaremos su cita por teléfono." },
+    failKept: { en: "Your answers are still on this page, so nothing needs retyping.", es: "Sus respuestas siguen en esta página, no necesita volver a escribirlas." },
     offline: { en: "This preview has no server connected, so the request was saved in this browser only. On the live site it is delivered to the front desk.", es: "Esta vista previa no tiene servidor conectado, así que la solicitud se guardó solo en este navegador. En el sitio real se envía a la recepción." },
     sideH: { en: "Prefer to call?", es: "¿Prefiere llamar?" },
     sideP: { en: "Our front desk answers during office hours and returns voicemails the same day.", es: "La recepción contesta en horario de oficina y devuelve los mensajes de voz el mismo día." },

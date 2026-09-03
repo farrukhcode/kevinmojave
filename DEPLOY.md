@@ -9,10 +9,27 @@ staff a dashboard at `/admin`. No database server, no Redis, no build step at ru
 | Path | What it is | Access |
 |---|---|---|
 | `/` | the website | public |
+| `/api/availability` | the real openings the booking calendar draws | public, rate limited |
 | `/api/appointments` | `POST` an appointment request | public, rate limited |
-| `/admin` | staff dashboard: view, filter, mark contacted, add notes, export CSV | HTTP Basic auth |
-| `/api/admin/*` | dashboard data, CSV export, audit log | HTTP Basic auth |
+| `/admin` | staff dashboard: requests, day calendar, weekly hours, activity log | sign-in |
+| `/api/admin/*` | dashboard data, schedule editing, CSV export, audit log | session cookie or HTTP Basic |
 | `/healthz` | health check Coolify polls | public, no data |
+
+The dashboard has four tabs, each deep-linkable (`/admin#calendar`):
+
+- **Requests** — everything patients have sent, filterable by status, with staff notes,
+  rescheduling and CSV export.
+- **Calendar** — one day at a time as a list of slots. Book a visit taken over the phone,
+  block an hour, close the day, or free up something already blocked.
+- **Hours & availability** — the weekly grid that generates every bookable time on the
+  website, plus how much notice a booking needs, how far ahead the calendar opens, and the
+  list of upcoming closures and holidays.
+- **Activity** — every sign-in, failed sign-in, change and export.
+
+Openings are computed from that schedule, never guessed by the browser. A requested time
+is held the moment the request arrives, so two patients cannot take the same slot, and a
+visit longer than one slot (a 45-minute new-patient consultation on a 30-minute grid)
+holds every slot it covers.
 
 Requests live in `/app/data/mojave.db` inside the container, which is a Docker volume, so
 redeploys do not lose anything.
@@ -29,7 +46,7 @@ version. A `docker-compose.yml` is included as a fallback for plain Docker hosts
    **Dockerfile**.
 3. Set **Ports Exposes** to `3000`. Leave **Ports Mappings** empty: publishing a host port
    bypasses the proxy and silently disables rolling updates.
-4. **Domains**: `https://mojavemedical.org,https://www.mojavemedical.org`, direction
+4. **Domains**: `https://mojavemedclinic.com,https://www.mojavemedclinic.com`, direction
    *Allow www & non-www*. Point an A record at the server. That is the whole Let's Encrypt
    setup; keep port 80 open for the ACME challenge.
 5. **Persistent Storage** tab: name `mojave-data`, leave Source Path empty, Destination
@@ -73,7 +90,36 @@ repo. Every push to the default branch rebuilds and restarts the container.
 - **Check Traefik is v3.6.1 or newer** under Servers → Proxy → Configuration. Older builds
   pin a Docker API version and report *No available server* against a healthy container.
 
-## 3. Email
+## 3. Security
+
+- **Sign-in** is a form, not a browser password box. The session is a signed cookie:
+  `HttpOnly`, `SameSite=Strict`, `Secure`, and short-lived (`SESSION_HOURS`, default 8).
+  The same credentials still work as HTTP Basic for the CSV export and for scripts.
+- **Brute force**: wrong passwords lock the IP out for an escalating cool-off, and every
+  attempt is written to the activity log.
+- **CSRF**: writes must be same-origin (`Sec-Fetch-Site`, then `Origin`, then `Referer`),
+  must be `application/json`, and a browser session must also present its CSRF token. A
+  cross-site form cannot satisfy any of the three.
+- **Injection**: every query is a prepared statement with bound parameters; every string
+  that reaches the page is HTML-escaped; the CSV export prefixes cells that Excel would
+  otherwise run as a formula.
+- **Headers**: a strict Content-Security-Policy on HTML, `nosniff`, `frame-ancestors 'none'`,
+  a locked-down `Permissions-Policy`, and HSTS.
+- **Static files** cannot escape the public directory, and a request for a missing file
+  404s instead of falling through to the site shell.
+- **What goes in the log**: who, what, when, and a salted hash of the IP — never a raw IP,
+  and never the patient details themselves.
+
+Run the checks against a throwaway database after any change:
+
+```
+cd server
+DATA_DIR=/tmp/mm-test ADMIN_USER=test ADMIN_PASS=secret123 PORT=3999 \
+  SITE_HOST=localhost NODE_ENV=development RATE_LIMIT_PER_HOUR=50 node server.js &
+npm test
+```
+
+## 4. Email
 
 `SMTP_HOST` unset means email is simply disabled. Requests are still saved and visible in
 `/admin`; nothing is lost. Set it when you are ready.
@@ -105,12 +151,12 @@ Add these DNS records so mail from a brand-new domain is not filed as spam:
 ```
 TXT  @             v=spf1 include:_spf.google.com ~all
 TXT  google._domainkey    (the DKIM value Workspace generates)
-TXT  _dmarc        v=DMARC1; p=quarantine; rua=mailto:dmarc@mojavemedical.org
+TXT  _dmarc        v=DMARC1; p=quarantine; rua=mailto:dmarc@mojavemedclinic.com
 ```
 
 Swap the SPF include for `amazonses.com` if you use SES.
 
-## 4. Backups
+## 5. Backups
 
 Coolify has native scheduled volume backups. Use them rather than a cron sidecar.
 
@@ -129,7 +175,7 @@ same container replicating to S3 with a one second sync interval.
 `PRAGMA integrity_check;`. A backup you have never restored is not a backup, and this one
 holds patient information. Keep the archives encrypted.
 
-## 5. Local development
+## 6. Local development
 
 ```
 ./build.sh                     # regenerate server/public from src/
@@ -139,11 +185,17 @@ DATA_DIR=./data ADMIN_USER=dev ADMIN_PASS=dev PORT=3000 npm start
 
 Then open `http://localhost:3000` and `http://localhost:3000/admin`.
 
-## 6. Before this goes live for a real practice
+Over plain `http` the session cookie is dropped unless you also set `NODE_ENV=development`
+(or `SECURE_COOKIE=false`). Never set that in production.
+
+## 7. Before this goes live for a real practice
 
 - Sign a BAA with the hosting provider and the email provider.
 - Turn on `RETAIN_DAYS` so closed requests are purged on a schedule.
-- Replace HTTP Basic auth on `/admin` with per-user logins if more than a couple of staff
-  need access, so the audit log attributes actions to a person.
+- Set the real weekly hours in **Hours & availability** before announcing the site. The
+  database ships with the currently advertised hours (Mon–Fri 8–5, Sat 1–5) as a starting
+  point, not as a confirmed schedule.
+- Give each member of staff their own login if more than a couple of people need access,
+  so the activity log attributes actions to a person rather than to one shared account.
 - Confirm hours, insurance list, payment methods and the suite number with Dr. Ganesh.
 - Have a lawyer review the privacy notice before publishing it.

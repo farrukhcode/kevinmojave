@@ -49,8 +49,66 @@ export function openDb(file) {
       ip_hash    TEXT
     );
     CREATE INDEX IF NOT EXISTS idx_audit_at ON audit_log(at DESC);
+
+    /* ---- scheduling ---- */
+    CREATE TABLE IF NOT EXISTS settings (
+      key   TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    );
+
+    -- The recurring weekly grid. One row per open window per weekday, so a day with a
+    -- lunch break is simply two rows.
+    CREATE TABLE IF NOT EXISTS schedule_rules (
+      id        INTEGER PRIMARY KEY AUTOINCREMENT,
+      dow       INTEGER NOT NULL,          -- 0 = Sunday
+      start_min INTEGER NOT NULL,          -- minutes from midnight, clinic local time
+      end_min   INTEGER NOT NULL,
+      slot_min  INTEGER NOT NULL DEFAULT 30,
+      capacity  INTEGER NOT NULL DEFAULT 1,
+      active    INTEGER NOT NULL DEFAULT 1
+    );
+
+    -- One date that does not follow the weekly grid: closed, or its own windows.
+    CREATE TABLE IF NOT EXISTS schedule_overrides (
+      date    TEXT PRIMARY KEY,
+      closed  INTEGER NOT NULL DEFAULT 0,
+      windows TEXT,                        -- JSON array of {start_min,end_min,slot_min,capacity}
+      note    TEXT
+    );
+
+    -- Anything else that occupies time: a busy hold, a vacation, a visit booked by phone.
+    CREATE TABLE IF NOT EXISTS blocks (
+      id            INTEGER PRIMARY KEY AUTOINCREMENT,
+      kind          TEXT NOT NULL DEFAULT 'busy',   -- 'busy' | 'appointment'
+      start_date    TEXT NOT NULL,
+      end_date      TEXT NOT NULL,                  -- inclusive
+      all_day       INTEGER NOT NULL DEFAULT 0,
+      start_min     INTEGER,
+      end_min       INTEGER,
+      title         TEXT,
+      note          TEXT,
+      patient_name  TEXT,
+      patient_phone TEXT,
+      visit_label   TEXT,
+      created_at    TEXT,
+      created_by    TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_blocks_range ON blocks(start_date, end_date);
+    CREATE INDEX IF NOT EXISTS idx_appt_slot ON appointments(requested_date, requested_time);
   `);
+  seedSchedule(db);
   return db;
+}
+
+/**
+ * First run only: publish the hours the practice already advertises, so the calendar is
+ * never empty on a fresh database. Staff can change all of it in the dashboard afterwards.
+ */
+function seedSchedule(db) {
+  if (db.prepare("SELECT COUNT(*) c FROM schedule_rules").get().c > 0) return;
+  const ins = db.prepare("INSERT INTO schedule_rules (dow,start_min,end_min,slot_min,capacity,active) VALUES (?,?,?,?,?,1)");
+  for (const dow of [1, 2, 3, 4, 5]) ins.run(dow, 8 * 60, 17 * 60, 30, 1);   // Mon-Fri 8:00-5:00
+  ins.run(6, 13 * 60, 17 * 60, 30, 1);                                       // Sat 1:00-5:00
 }
 
 export const STATUSES = ["new", "contacted", "scheduled", "declined", "spam"];
@@ -81,15 +139,19 @@ export function listAppointments(db, { status, q, limit = 200, offset = 0 } = {}
 export const countsByStatus = db =>
   Object.fromEntries(db.prepare("SELECT status, COUNT(*) n FROM appointments GROUP BY status").all().map(r => [r.status, r.n]));
 
-export function updateAppointment(db, ref, { status, staff_notes, actor }) {
+export function updateAppointment(db, ref, { status, staff_notes, requested_date, requested_time, actor }) {
   const cur = db.prepare("SELECT * FROM appointments WHERE ref = ?").get(ref);
   if (!cur) return null;
   const next = {
     status: status && STATUSES.includes(status) ? status : cur.status,
     staff_notes: staff_notes === undefined ? cur.staff_notes : String(staff_notes).slice(0, 2000),
+    requested_date: requested_date === undefined ? cur.requested_date : (requested_date || null),
+    requested_time: requested_time === undefined ? cur.requested_time : (requested_time || null),
   };
-  db.prepare("UPDATE appointments SET status = ?, staff_notes = ?, handled_at = ?, handled_by = ? WHERE ref = ?")
-    .run(next.status, next.staff_notes, new Date().toISOString(), actor || "staff", ref);
+  db.prepare(`UPDATE appointments SET status = ?, staff_notes = ?, requested_date = ?, requested_time = ?,
+              handled_at = ?, handled_by = ? WHERE ref = ?`)
+    .run(next.status, next.staff_notes, next.requested_date, next.requested_time,
+         new Date().toISOString(), actor || "staff", ref);
   return db.prepare("SELECT * FROM appointments WHERE ref = ?").get(ref);
 }
 

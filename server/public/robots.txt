@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
-Sitemap: https://mojavemedical.org/sitemap.xml
+Sitemap: https://mojavemedclinic.com/sitemap.xml

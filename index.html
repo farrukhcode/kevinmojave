@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="canonical" href="https://mojavemedical.org/">
+<link rel="canonical" href="https://mojavemedclinic.com/">
 <title>Mojave Medical</title>
 <meta name="description" content="Mojave Medical is the Apple Valley, California practice of Kevin N. Ganesh, MD, board-certified in Infectious Disease and Internal Medicine. Wound and bone infections, HIV, hepatitis, Valley Fever, travel medicine and primary care. Book online or call (760) 688-0084.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -524,14 +524,14 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
   "@graph": [
     {
       "@type": "MedicalClinic",
-      "@id": "https://mojavemedical.org/#clinic",
+      "@id": "https://mojavemedclinic.com/#clinic",
       "name": "Mojave Medical",
       "alternateName": "Mojave Medical - Kevin Ganesh MD",
       "description": "Infectious disease and internal medicine practice of Kevin N. Ganesh, MD, in Apple Valley, California.",
-      "url": "https://mojavemedical.org/",
+      "url": "https://mojavemedclinic.com/",
       "telephone": "+1-760-688-0084",
       "faxNumber": "+1-760-688-0470",
-      "email": "mojavemedicalclinic@gmail.com",
+      "email": "kevin.ganesh@mojavemedclinic.com",
       "address": {"@type": "PostalAddress","streetAddress": "16041 Kamana Rd","addressLocality": "Apple Valley","addressRegion": "CA","postalCode": "92307","addressCountry": "US"},
       "geo": {"@type": "GeoCoordinates","latitude": 34.5424965,"longitude": -117.2710243},
       "areaServed": ["Apple Valley","Victorville","Hesperia","Barstow","Lucerne Valley","Adelanto","High Desert, San Bernardino County"],
@@ -549,12 +549,12 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
     },
     {
       "@type": "Physician",
-      "@id": "https://mojavemedical.org/#dr-ganesh",
+      "@id": "https://mojavemedclinic.com/#dr-ganesh",
       "name": "Kevin N. Ganesh, MD",
       "givenName": "Kevin","familyName": "Ganesh","honorificSuffix": "MD",
       "medicalSpecialty": ["InfectiousDisease","InternalMedicine"],
       "identifier": {"@type": "PropertyValue","propertyID": "NPI","value": "1225563026"},
-      "worksFor": {"@id": "https://mojavemedical.org/#clinic"},
+      "worksFor": {"@id": "https://mojavemedclinic.com/#clinic"},
       "hospitalAffiliation": [
         {"@type": "Hospital","name": "Providence St. Mary Medical Center","address": "18300 US Highway 18, Apple Valley, CA 92307"},
         {"@type": "Hospital","name": "Desert Valley Hospital","address": "16850 Bear Valley Rd, Victorville, CA 92395"},
@@ -604,7 +604,7 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
    PubMed, and the practice's own Yelp listing (Sept 2026). Items marked
    [confirm] in PLAN.md should be verified with Dr. Ganesh before launch.
    ===================================================================== */
-const PHONE = "(760) 688-0084", PHONE_TEL = "tel:+17606880084", FAX = "(760) 688-0470", EMAIL = "mojavemedicalclinic@gmail.com";
+const PHONE = "(760) 688-0084", PHONE_TEL = "tel:+17606880084", FAX = "(760) 688-0470", EMAIL = "kevin.ganesh@mojavemedclinic.com";
 // Address per the practice's own Google Business Profile ("Kevin Ganesh MD - Mojave Medical",
 // place /g/11y3n827gf, pin 34.5424965,-117.2710243). The CMS NPI record still shows the older
 // 15982 Tuscola Rd Ste B address and should be updated by the practice. See PLAN.md.
@@ -926,6 +926,17 @@ const C = {
     doneP: { en: "We'll confirm by phone or text within one business day. If you don't hear from us, call the office.", es: "Confirmaremos por teléfono o mensaje de texto en un día hábil. Si no recibe noticias, llame al consultorio." },
     refNo: { en: "Reference", es: "Referencia" },
     another: { en: "Request another", es: "Solicitar otra" },
+    loading: { en: "Loading available times…", es: "Cargando horarios disponibles…" },
+    avErrH: { en: "The online calendar is unavailable", es: "El calendario en línea no está disponible" },
+    avErrP: { en: "We can't reach the booking system right now, so we can't show real openings. Please call the office and we'll book you over the phone.", es: "No podemos conectar con el sistema de reservas en este momento, así que no podemos mostrar horarios reales. Llame al consultorio y le daremos una cita por teléfono." },
+    retry: { en: "Try again", es: "Reintentar" },
+    noneOpen: { en: "There are no online openings in the next few weeks. Please call the office.", es: "No hay horarios en línea en las próximas semanas. Llame al consultorio." },
+    closedDay: { en: "The office is closed that day.", es: "El consultorio está cerrado ese día." },
+    takenH: { en: "That time was just taken", es: "Esa hora acaba de ocuparse" },
+    takenP: { en: "Someone booked it while you were filling in your details, so nothing was sent. The calendar below is up to date; please pick another time.", es: "Alguien la reservó mientras completaba sus datos, así que no se envió nada. El calendario de abajo está actualizado; elija otra hora." },
+    failH: { en: "Your request was not sent", es: "Su solicitud no se envió" },
+    failP: { en: "We could not reach the office system, so no appointment was requested. Please call us and we'll take your appointment over the phone.", es: "No pudimos conectar con el sistema del consultorio, así que no se solicitó ninguna cita. Llámenos y tomaremos su cita por teléfono." },
+    failKept: { en: "Your answers are still on this page, so nothing needs retyping.", es: "Sus respuestas siguen en esta página, no necesita volver a escribirlas." },
     offline: { en: "This preview has no server connected, so the request was saved in this browser only. On the live site it is delivered to the front desk.", es: "Esta vista previa no tiene servidor conectado, así que la solicitud se guardó solo en este navegador. En el sitio real se envía a la recepción." },
     sideH: { en: "Prefer to call?", es: "¿Prefiere llamar?" },
     sideP: { en: "Our front desk answers during office hours and returns voicemails the same day.", es: "La recepción contesta en horario de oficina y devuelve los mensajes de voz el mismo día." },
@@ -1146,8 +1157,8 @@ const C = {
     ? t(C.ui.days)[d.getDay()].toLowerCase() + " " + d.getDate() + " de " + t(C.ui.months)[d.getMonth()]
     : t(C.ui.days)[d.getDay()] + ", " + t(C.ui.months)[d.getMonth()] + " " + d.getDate();
   const fmtTime = m => { const h = Math.floor(m / 60), mm = pad(m % 60); if (lang === "es") return h + ":" + mm; const h12 = h % 12 === 0 ? 12 : h % 12; return h12 + ":" + mm + (h < 12 ? " AM" : " PM"); };
-  const hsh = s => { let h = 7; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; };
-  const hoursRow = (d) => { const r = C.location.hours.find(x => x.d === d); return r && r.en ? t(r) : t(C.ui.closed); };
+  const hoursSrc = () => (AV.hours && AV.hours.length ? AV.hours : C.location.hours);
+  const hoursRow = (d) => { const r = hoursSrc().find(x => x.d === d); return r && r.en ? t(r) : t(C.ui.closed); };
   const todayDow = new Date().getDay();
   let toastTimer;
   function toast(msg) { const el = $("#toast"); el.textContent = msg; el.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("show"), 2600); }
@@ -1338,19 +1349,42 @@ const C = {
   /* ---------- booking ---------- */
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const BOOK_OPENED = Date.now();
-  const B = { step: 0, type: null, date: null, time: null, form: {}, errors: {}, done: null, month: new Date(today.getFullYear(), today.getMonth(), 1) };
+  const B = { step: 0, type: null, date: null, time: null, form: {}, errors: {}, done: null, fail: null, month: new Date(today.getFullYear(), today.getMonth(), 1) };
   const typeOf = id => C.book.types.find(x => x.id === id);
-  function slotsFor(d) {
-    const dow = d.getDay(); if (dow === 0) return [];
-    const start = dow === 6 ? 13 * 60 : 8 * 60, key = ymd(d), out = [];
-    const now = new Date(), isToday = ymd(now) === key, nowMin = now.getHours() * 60 + now.getMinutes();
-    for (let m = start; m <= 16 * 60 + 30; m += 30) {
-      const taken = hsh(key + ":" + m + ":mm") % 100 < 36 || (isToday && m < nowMin + 120);
-      out.push({ m, taken });
-    }
-    return out;
+
+  /* Openings come from the practice's own schedule, over /api/availability. The calendar
+     never invents a time: if the API cannot be reached we say so and send people to the
+     phone, because a made-up opening is worse than no calendar at all. */
+  const AV = { state: "idle", type: null, days: null, hours: null, today: null, horizon: 60, tz: null, error: null };
+  function loadAvailability(force) {
+    const wanted = B.type || "";
+    if (!force && AV.state === "loading") return AV.promise;
+    if (!force && AV.state === "ready" && AV.type === wanted) return Promise.resolve(AV);
+    AV.state = "loading"; AV.type = wanted; AV.error = null;
+    AV.promise = fetch("/api/availability" + (wanted ? "?visit_type=" + encodeURIComponent(wanted) : ""),
+      { headers: { accept: "application/json" }, cache: "no-store" })
+      .then(r => (r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))))
+      .then(d => {
+        const days = {};
+        (d.days || []).forEach(x => { days[x.date] = x; });
+        AV.days = days; AV.hours = d.hours || null; AV.today = d.today || null;
+        AV.tz = d.tz || null; AV.horizon = d.horizon_days || 60;
+        AV.state = "ready";
+        return AV;
+      })
+      .catch(e => { AV.state = "error"; AV.error = e.message; return AV; });
+    return AV.promise;
   }
-  const dayOk = d => { const diff = (d - today) / 864e5; return diff >= 0 && diff <= 60 && d.getDay() !== 0 && slotsFor(d).some(s => !s.taken); };
+  /** Start a load if the cached answer does not match the chosen visit type, then redraw. */
+  function ensureAvailability() {
+    if (AV.state === "loading") return;
+    if (AV.state === "ready" && AV.type === (B.type || "")) return;
+    loadAvailability().then(() => { if (currentPage() === "book") rerenderBook(); });
+  }
+  const dayInfo = d => (AV.days ? AV.days[ymd(d)] : null) || null;
+  const slotsFor = d => { const x = dayInfo(d); return x && x.open ? x.open : []; };
+  const dayOk = d => slotsFor(d).length > 0;
+  const horizonEnd = () => { const e = new Date(today); e.setDate(e.getDate() + (AV.horizon || 60)); return e; };
 
   function pageBook() {
     return pageHead("book", C.book.lede) +
@@ -1371,21 +1405,25 @@ const C = {
       body = "<h2 style=\"font-size:1.6rem;margin-bottom:1rem\">" + esc(t(K.s1)) + '</h2><div class="opts">' + K.types.map(x =>
         '<button type="button" class="opt" data-type="' + x.id + '" aria-pressed="' + (B.type === x.id) + '"><b>' + esc(t(x.h)) + "</b><span>" + esc(t(x.s)) + '</span><span class="dur">' + x.dur + " " + esc(t(K.min)) + (x.id === "video" ? " · " + esc(t(C.ui.telehealth)) : "") + "</span></button>").join("") + "</div>";
     } else if (B.step === 1) {
-      body = "<h2 style=\"font-size:1.6rem;margin-bottom:1rem\">" + esc(t(K.s2)) + '</h2><div class="cal-wrap">' + calendar() + '<div class="slots" id="slots">' + slotList() + "</div></div>";
+      const h2 = "<h2 style=\"font-size:1.6rem;margin-bottom:1rem\">" + esc(t(K.s2)) + "</h2>";
+      if (AV.state === "error") body = h2 + calendarDown();
+      else if (AV.state !== "ready") body = h2 + '<div class="slot-empty" style="min-height:8rem;display:grid;place-items:center">' + esc(t(K.loading)) + "</div>";
+      else body = h2 + '<div class="cal-wrap">' + calendar() + '<div class="slots" id="slots">' + slotList() + "</div></div>";
     } else if (B.step === 2) {
       body = "<h2 style=\"font-size:1.6rem;margin-bottom:1rem\">" + esc(t(K.s3)) + "</h2>" + detailsForm();
     } else {
       body = "<h2 style=\"font-size:1.6rem;margin-bottom:1rem\">" + esc(t(K.s4)) + '</h2><div class="note" style="margin-bottom:1rem">' + ico("info") + "<span>" + esc(t(K.reviewNote)) + "</span></div>" + summary(true);
     }
     const canNext = B.step === 0 ? !!B.type : B.step === 1 ? !!(B.date && B.time != null) : true;
-    return progress() + body +
+    return progress() + (B.fail ? failure() : "") + body +
       '<div class="book-nav"><div>' + (B.step > 0 ? '<button type="button" class="btn btn-ghost" data-nav="back">' + ico("chevL") + esc(t(K.back)) + "</button>" : "") + "</div>" +
       "<div>" + (B.step < 3 ? '<button type="button" class="btn btn-ink" data-nav="next"' + (canNext ? "" : " disabled") + ">" + esc(t(K.next)) + ico("arrow") + "</button>" : '<button type="button" class="btn btn-amber btn-lg" data-nav="send">' + ico("cal") + esc(t(K.send)) + "</button>") + "</div></div>";
   }
   function calendar() {
     const m = B.month, y = m.getFullYear(), mo = m.getMonth();
     const first = new Date(y, mo, 1), startDow = first.getDay(), days = new Date(y, mo + 1, 0).getDate();
-    const minMonth = new Date(today.getFullYear(), today.getMonth(), 1), maxMonth = new Date(today.getFullYear(), today.getMonth() + 2, 1);
+    const end = horizonEnd();
+    const minMonth = new Date(today.getFullYear(), today.getMonth(), 1), maxMonth = new Date(end.getFullYear(), end.getMonth(), 1);
     let cells = "";
     for (let i = 0; i < startDow; i++) cells += "<span></span>";
     for (let d = 1; d <= days; d++) {
@@ -1398,9 +1436,15 @@ const C = {
   }
   function slotList() {
     if (!B.date) return '<div class="slot-empty">' + esc(t(C.book.pickDay)) + "</div>";
-    const d = fromYmd(B.date), s = slotsFor(d);
-    if (!s.some(x => !x.taken)) return '<div class="slot-empty">' + esc(t(C.book.noSlots)) + "</div>";
-    return "<h4>" + esc(t(C.book.timesFor)) + " " + esc(fmtDate(d)) + '</h4><div class="slot-grid">' + s.map(x => '<button type="button" class="slot" data-time="' + x.m + '"' + (x.taken ? " disabled" : "") + ' aria-pressed="' + (B.time === x.m) + '">' + fmtTime(x.m) + "</button>").join("") + "</div>";
+    const d = fromYmd(B.date), info = dayInfo(d), s = slotsFor(d);
+    if (!s.length) return '<div class="slot-empty">' + esc(t(info && info.closed ? C.book.closedDay : C.book.noSlots)) + "</div>";
+    return "<h4>" + esc(t(C.book.timesFor)) + " " + esc(fmtDate(d)) + '</h4><div class="slot-grid">' + s.map(x => '<button type="button" class="slot" data-time="' + x.m + '" aria-pressed="' + (B.time === x.m) + '">' + fmtTime(x.m) + "</button>").join("") + "</div>";
+  }
+  function calendarDown() {
+    return '<div class="note amber" style="align-items:flex-start">' + ico("info") +
+      "<span><b>" + esc(t(C.book.avErrH)) + "</b><br>" + esc(t(C.book.avErrP)) + "</span></div>" +
+      '<p style="margin-top:1.2rem"><a class="btn btn-ink" href="' + PHONE_TEL + '">' + ico("phone") + PHONE +
+      '</a> <button type="button" class="btn btn-ghost" data-nav="retry">' + esc(t(C.book.retry)) + "</button></p>";
   }
   function field(name, label, input, hint) {
     const err = B.errors[name];
@@ -1419,7 +1463,7 @@ const C = {
       field("ins", F.ins, '<select id="f-ins" name="ins">' + insOpts + "</select>") +
       '<div class="field full"><span style="font-weight:600;font-size:.92rem">' + esc(t(F.status)) + '</span><div class="opts" style="margin-top:.3rem"><button type="button" class="opt" data-status="new" aria-pressed="' + (B.form.status !== "est") + '"><b>' + esc(t(F.newp)) + '</b></button><button type="button" class="opt" data-status="est" aria-pressed="' + (B.form.status === "est") + '"><b>' + esc(t(F.estp)) + "</b></button></div></div>" +
       '<div class="full">' + field("ref", F.ref, inp("ref", "text")) + "</div>" +
-      '<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label for="f-company">Company</label><input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off" value="' + v("company") + '"></div>' +
+      '<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label for="f-mm_ref_code">Leave this field empty</label><input id="f-mm_ref_code" name="mm_ref_code" type="text" tabindex="-1" autocomplete="new-password" data-lpignore="true" data-1p-ignore data-form-type="other" value="' + v("mm_ref_code") + '"></div>' +
       '<div class="full">' + field("reason", F.reason, '<textarea id="f-reason" name="reason" rows="2" maxlength="140">' + v("reason") + "</textarea>", F.reasonHint) + "</div>" +
       '<div class="full field' + (B.errors.consent ? " err" : "") + '"><label style="display:flex;gap:.6rem;align-items:flex-start;font-weight:400;font-size:.92rem"><input type="checkbox" id="f-consent" name="consent" style="width:auto;margin-top:.25rem"' + (B.form.consent ? " checked" : "") + ">" + esc(t(F.consent)) + "</label>" + (B.errors.consent ? '<span class="err-msg">' + esc(B.errors.consent) + "</span>" : "") + "</div>" +
       "</form>";
@@ -1445,29 +1489,42 @@ const C = {
   }
   function success() {
     const K = C.book;
-    return '<div class="success"><div class="big-check">' + ico("check") + "</div><h2>" + esc(t(K.doneH)) + '</h2><p class="lede">' + esc(t(K.doneP)) + '</p><span class="ref">' + esc(t(K.refNo)) + " " + esc(B.done) + "</span>" +
-      (B.offline ? '<div class="note amber">' + ico("info") + "<span>" + esc(t(K.offline)) + "</span></div>" : "") + summary(true) +
+    return '<div class="success"><div class="big-check">' + ico("check") + "</div><h2>" + esc(t(K.doneH)) + '</h2><p class="lede">' + esc(t(K.doneP)) + '</p><span class="ref">' + esc(t(K.refNo)) + " " + esc(B.done) + "</span>" + summary(true) +
       '<div class="flex"><a class="btn btn-ink" href="' + PHONE_TEL + '">' + ico("phone") + PHONE + '</a><button type="button" class="btn btn-ghost" data-nav="reset">' + esc(t(K.another)) + "</button></div></div>";
   }
-  function rerenderBook() { const el = $("#book-main"); if (el) { el.innerHTML = bookMain(); el.scrollIntoView({ block: "start", behavior: "smooth" }); } }
+  /* A request that did not reach the office must never look like one that did. */
+  function failure() {
+    const K = C.book, taken = B.fail === "taken";
+    return '<div class="note amber" style="align-items:flex-start;margin-bottom:1.2rem">' + ico("info") +
+      "<span><b>" + esc(t(taken ? K.takenH : K.failH)) + "</b><br>" + esc(t(taken ? K.takenP : K.failP)) +
+      (taken ? "" : " " + esc(t(K.failKept))) + "</span></div>" +
+      '<p style="margin-bottom:1.2rem"><a class="btn btn-ink" href="' + PHONE_TEL + '">' + ico("phone") + PHONE + "</a></p>";
+  }
+  function rerenderBook() {
+    const el = $("#book-main");
+    if (el) { el.innerHTML = bookMain(); el.scrollIntoView({ block: "start", behavior: "smooth" }); }
+    if (B.step === 1 && !B.done) ensureAvailability();
+  }
   function onBookClick(e) {
     const b = e.target.closest("[data-type],[data-day],[data-time],[data-month],[data-nav],[data-status]"); if (!b || b.disabled) return;
-    if (b.dataset.type) { B.type = b.dataset.type; rerenderBook(); }
+    if (b.dataset.type) { B.type = b.dataset.type; B.time = null; rerenderBook(); }
     else if (b.dataset.day) { B.date = b.dataset.day; B.time = null; rerenderBook(); }
     else if (b.dataset.time) { B.time = +b.dataset.time; rerenderBook(); }
     else if (b.dataset.month) { B.month = new Date(B.month.getFullYear(), B.month.getMonth() + (+b.dataset.month), 1); rerenderBook(); }
     else if (b.dataset.status) { B.form.status = b.dataset.status; rerenderBook(); }
+    else if (b.dataset.nav === "retry") { loadAvailability(true).then(() => rerenderBook()); rerenderBook(); }
     else if (b.dataset.nav === "back") { B.step = Math.max(0, B.step - 1); rerenderBook(); }
     else if (b.dataset.nav === "next") {
       if (B.step === 2 && !validate()) { rerenderBook(); const first = $("#book-main .field.err input, #book-main .field.err select"); if (first) first.focus(); return; }
       B.step = Math.min(3, B.step + 1); rerenderBook();
     }
     else if (b.dataset.nav === "send") { submitBooking(b); }
-    else if (b.dataset.nav === "reset") { Object.assign(B, { step: 0, type: null, date: null, time: null, form: {}, errors: {}, done: null }); rerenderBook(); }
+    else if (b.dataset.nav === "reset") { Object.assign(B, { step: 0, type: null, date: null, time: null, form: {}, errors: {}, done: null, fail: null }); rerenderBook(); }
   }
   async function submitBooking(btn) {
     if (B.sending) return;
     B.sending = true;
+    B.fail = null;
     const original = btn.innerHTML;
     btn.disabled = true;
     btn.textContent = lang === "es" ? "Enviando…" : "Sending…";
@@ -1480,10 +1537,11 @@ const C = {
       patient_status: B.form.status === "est" ? "est" : "new",
       referred_by: B.form.ref, reason: B.form.reason,
       consent: !!B.form.consent, lang: lang,
-      company: B.form.company || "",          // honeypot: must stay empty
+      mm_ref_code: B.form.mm_ref_code || "",   // spam trap: a person never sees this field
       elapsed_ms: Date.now() - BOOK_OPENED,
       source: "website"
     };
+    const restore = () => { B.sending = false; btn.disabled = false; btn.innerHTML = original; };
     try {
       const r = await fetch("/api/appointments", {
         method: "POST",
@@ -1491,22 +1549,32 @@ const C = {
         body: JSON.stringify(payload)
       });
       const data = await r.json().catch(() => ({}));
-      if (r.ok && data.ref) { B.done = data.ref; B.offline = false; }
+
+      if (r.ok && data.ref) { B.done = data.ref; }
       else if (r.status === 422 && data.errors) {
         const map = { first_name: "first", last_name: "last", dob: "dob", phone: "phone", email: "email", consent: "consent" };
         B.errors = {}; Object.keys(data.errors).forEach(k => { B.errors[map[k] || k] = data.errors[k]; });
-        B.step = 2; B.sending = false; rerenderBook(); toast(data.error || "Please check the form."); return;
-      } else if (r.status === 429) { B.sending = false; btn.disabled = false; btn.innerHTML = original; toast(data.error || "Too many requests. Please call the office."); return; }
+        B.step = 2; restore(); rerenderBook(); toast(data.error || t(C.book.f.req)); return;
+      }
+      else if (r.status === 409) {
+        // Someone else took the slot mid-form. Nothing was stored; show the fresh calendar.
+        B.fail = "taken"; B.time = null; B.step = 1;
+        restore();
+        loadAvailability(true).then(() => rerenderBook());
+        rerenderBook();
+        toast(t(C.book.takenH));
+        return;
+      }
+      else if (r.status === 429) { restore(); toast(data.error || t(C.book.failH)); return; }
       else throw new Error(data.error || ("HTTP " + r.status));
     } catch (err) {
-      // No backend (static preview, or the API is down): keep the request locally so nothing is lost.
-      B.done = "MM-" + Date.now().toString(36).toUpperCase().slice(-6);
-      B.offline = true;
-      try {
-        const arr = JSON.parse(localStorage.getItem("mm_requests") || "[]");
-        arr.push({ ref: B.done, at: new Date().toISOString(), payload });
-        localStorage.setItem("mm_requests", JSON.stringify(arr.slice(-20)));
-      } catch (e2) {}
+      /* The office system could not be reached. Say so plainly: a reference number here
+         would tell a patient they have an appointment when the office has no record. */
+      B.fail = "error";
+      restore();
+      rerenderBook();
+      toast(t(C.book.failH));
+      return;
     }
     B.sending = false;
     rerenderBook();
@@ -1554,6 +1622,7 @@ const C = {
     main.classList.remove("page"); void main.offsetWidth; main.classList.add("page");
     main.innerHTML = PAGES[name]();
     document.title = "Mojave Medical · " + t(C.titles[name]);
+    if (name === "book" && !B.done) ensureAvailability();
     $("#site-head").classList.remove("open"); $("#menu-btn").setAttribute("aria-expanded", "false");
     renderChrome();
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
@@ -1569,6 +1638,14 @@ const C = {
   document.addEventListener("change", onBookInput);
   window.addEventListener("hashchange", route);
   route();
+  /* One quiet call at start-up keeps the printed office hours in step with the schedule
+     staff maintain in the dashboard, and warms the calendar before anyone clicks Book. */
+  loadAvailability().then(() => {
+    // Redraw when the practice's real hours differ from the ones compiled into the page,
+    // and always on the booking page so the calendar and the sidebar agree.
+    const stale = AV.hours && AV.hours.some(r => { const c = C.location.hours.find(x => x.d === r.d); return (c ? c.en : null) !== r.en; });
+    if (stale || currentPage() === "book") route();
+  });
 })();
 </script>
 </body>

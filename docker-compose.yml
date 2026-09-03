@@ -11,8 +11,8 @@ services:
       # --- required ---
       PORT: 3000
       HOST: 0.0.0.0                       # never 127.0.0.1 inside a container
-      SITE_URL: ${SITE_URL:-https://mojavemedical.org}
-      SITE_HOST: ${SITE_HOST:-mojavemedical.org}
+      SITE_URL: ${SITE_URL:-https://mojavemedclinic.com}
+      SITE_HOST: ${SITE_HOST:-mojavemedclinic.com}
       # --- staff dashboard (set real values in Coolify, not here) ---
       ADMIN_USER: ${ADMIN_USER:-}
       ADMIN_PASS: ${ADMIN_PASS:-}
